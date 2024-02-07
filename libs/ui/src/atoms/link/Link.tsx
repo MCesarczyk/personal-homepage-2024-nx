@@ -9,7 +9,7 @@ export const Link = styled.a`
     color: ${({ theme }) => theme.color.buttonText};
     background-color: ${({ theme }) => theme.color.themeColor};
     border: 1px solid ${({ theme }) => theme.color.elementBorder};
-    transition: 1s;
+    transition: 0.3s;
 
     @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
         font-size: 18px;
@@ -27,7 +27,12 @@ export const Link = styled.a`
     }
 
     &:hover {
-        filter: brightness(130%);
+        filter: brightness(120%);
         transform: scale(1.05);
+    }
+
+    &:active {
+        filter: brightness(120%);
+        transform: scale(1.0);
     }
 `;
