@@ -1,15 +1,21 @@
-import styled from 'styled-components';
+import styled, { ThemeProvider } from 'styled-components';
+
+import { Link } from '@ui';
+import { darkMode } from '@ui';
 
 import NxWelcome from './nx-welcome';
 
 const StyledApp = styled.div`
-  // Your style here
+  background: lightgray;
 `;
 
 export function App() {
   return (
     <StyledApp>
-      <NxWelcome title="spa" />
+      <ThemeProvider theme={darkMode}>
+        <Link href="https://nx.dev">Learn Nx</Link>
+        <NxWelcome title="spa" />
+      </ThemeProvider>
     </StyledApp>
   );
 }
