@@ -23,7 +23,7 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
       </GalleryLogoWrapper>
       <GalleryHeader>{title}</GalleryHeader>
       <GallerySubtitle>{subtitle}</GallerySubtitle>
-      {status === 'loading' && <Spinner message='be patient... ' />}
+      {status === 'loading' && <Spinner message="be patient... " />}
       {status === 'error' && (
         <ErrorMessage
           address="lorem.ipsum@mail.co"
@@ -38,8 +38,20 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
               key={repo.id}
               title={repo.name || 'n/a'}
               description={repo.description || 'n/a'}
-              demoLink={repo.homepage || 'n/a'}
-              codeLink={repo.html_url || 'n/a'}
+              links={[
+                {
+                  id: 1,
+                  prefix: 'demo',
+                  label: repo.codeLink.replace('https://', '') || 'n/a',
+                  url: repo.codeLink || 'n/a',
+                },
+                {
+                  id: 2,
+                  prefix: 'code',
+                  label: repo.demoLink.replace('https://', '') || 'n/a',
+                  url: repo.demoLink || 'n/a',
+                },
+              ]}
             />
           ))}
         </GalleryTilesContainer>
