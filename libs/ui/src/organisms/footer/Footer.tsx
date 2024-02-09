@@ -1,16 +1,15 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { Caption } from '../../atoms';
 
-import { type Thumbnail } from './types';
-
 interface FooterProps {
   address: string;
   note: string;
-  thumbnails: Thumbnail[];
+  children: ReactNode[];
 }
 
-export const Footer = ({ address, note, thumbnails }: FooterProps) => (
+export const Footer = ({ address, note, children }: FooterProps) => (
   <FooterContainer>
     <FooterHeader>
       <Caption>CONTACT:</Caption>
@@ -19,23 +18,11 @@ export const Footer = ({ address, note, thumbnails }: FooterProps) => (
       </FooterLink>
     </FooterHeader>
     <FooterParagraph>{note}</FooterParagraph>
-    <FooterThumbnailWrapper>
-      {thumbnails.map(({ id, thumbnail, url }) => (
-        <FooterThumbnail key={id}>
-          <FooterThumbnailLink
-            href={url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img src={thumbnail} alt="" />
-          </FooterThumbnailLink>
-        </FooterThumbnail>
-      ))}
-    </FooterThumbnailWrapper>
+    <FooterThumbnailWrapper>{children}</FooterThumbnailWrapper>
   </FooterContainer>
 );
 
-export const FooterContainer = styled.div`
+const FooterContainer = styled.div`
   width: 50%;
 
   @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
@@ -43,7 +30,7 @@ export const FooterContainer = styled.div`
   }
 `;
 
-export const FooterHeader = styled.h2`
+const FooterHeader = styled.h2`
   font-size: 32px;
   margin: 0px;
 
@@ -60,7 +47,7 @@ export const FooterHeader = styled.h2`
   }
 `;
 
-export const FooterLink = styled.a`
+const FooterLink = styled.a`
   display: block;
   font-weight: 900;
   color: ${({ theme }) => theme.color.primary};
@@ -84,39 +71,10 @@ export const FooterLink = styled.a`
   }
 `;
 
-export const FooterParagraph = styled.p`
+const FooterParagraph = styled.p`
   margin-bottom: 56px;
 `;
 
-export const FooterThumbnailWrapper = styled.div`
+const FooterThumbnailWrapper = styled.div`
   display: flex;
-`;
-
-export const FooterThumbnailLink = styled.a``;
-
-export const FooterThumbnail = styled.div`
-  width: 48px;
-  margin: 24px;
-  transition: 1s;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    width: 42px;
-    margin: 21px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    width: 40px;
-    margin: 20px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    width: 32px;
-    margin: 16px;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.color.themeColor};
-    filter: brightness(50%);
-    transform: scale(110%);
-  }
 `;

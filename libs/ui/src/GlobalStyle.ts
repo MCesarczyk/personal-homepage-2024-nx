@@ -15,6 +15,11 @@ html {
   outline-offset: 8px;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   font-family: 'Inter', sans-serif;
   font-size: 18px;

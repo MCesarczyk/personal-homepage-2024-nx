@@ -7,7 +7,7 @@ interface SectionProps {
   elements: string[];
 }
 
-const Section = ({ title, elements }: SectionProps) => (
+export const Section = ({ title, elements }: SectionProps) => (
   <StyledSection>
     <SectionHeader>{title}</SectionHeader>
     <SectionList>
@@ -20,8 +20,6 @@ const Section = ({ title, elements }: SectionProps) => (
     </SectionList>
   </StyledSection>
 );
-
-export default Section;
 
 export const StyledSection = styled.section`
   box-shadow: 2px;

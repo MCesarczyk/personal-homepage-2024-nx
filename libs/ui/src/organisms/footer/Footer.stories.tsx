@@ -1,7 +1,6 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
 
-import { thumbnails } from './thumbnails';
 import { Footer } from './Footer';
 
 const meta: Meta<typeof Footer> = {
@@ -11,7 +10,7 @@ const meta: Meta<typeof Footer> = {
   argTypes: {
     address: { control: 'text', description: 'Address' },
     note: { control: 'text', description: 'Author name' },
-    thumbnails: { control: 'array', description: 'Thumbnail images' },
+    children: { control: 'text', description: 'Footer content' },
   },
 };
 export default meta;
@@ -24,7 +23,7 @@ export const _Footer = Template.bind({});
 _Footer.args = {
   address: 'lorem.ipsum@dolor.sit',
   note: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-  thumbnails,
+  children: [<>Footer content</>],
 };
 _Footer.parameters = {
   backgrounds: {
