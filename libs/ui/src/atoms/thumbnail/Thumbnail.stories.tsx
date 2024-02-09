@@ -25,7 +25,7 @@ const Template: StoryFn<ComponentProps<typeof Thumbnail>> = (args) => (
 
 export const _Thumbnail = Template.bind({});
 _Thumbnail.args = {
-  id: '1',
+  id: 1,
   icon,
   url: 'https://example.com',
 };

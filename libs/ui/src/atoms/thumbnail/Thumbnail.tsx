@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 interface ThumbnailProps {
-  id: string;
+  id: number;
   icon: string;
   url: string;
 }

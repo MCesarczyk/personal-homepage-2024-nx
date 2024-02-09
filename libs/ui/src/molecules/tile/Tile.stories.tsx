@@ -12,8 +12,7 @@ const meta: Meta<typeof Tile> = {
   argTypes: {
     title: { control: 'text', description: 'Title' },
     description: { control: 'text', description: 'Description' },
-    demoLink: { control: 'text', description: 'Demo link' },
-    codeLink: { control: 'text', description: 'Code link' },
+    links: { control: 'object', description: 'Tile links' },
   },
 };
 export default meta;
@@ -28,6 +27,18 @@ export const _Tile = Template.bind({});
 _Tile.args = {
   title: 'Title',
   description: 'Description',
-  demoLink: 'https://example1.com',
-  codeLink: 'https://example2.com',
+  links: [
+    {
+      id: 1,
+      prefix: 'First',
+      label: 'example1.com',
+      url: 'https://example1.com',
+    },
+    {
+      id: 2,
+      prefix: 'Second',
+      label: 'example2.com',
+      url: 'https://example2.com',
+    },
+  ],
 };

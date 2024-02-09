@@ -1,29 +1,31 @@
 import styled from 'styled-components';
 
+interface TileUrl {
+  id: number;
+  prefix: string;
+  label: string;
+  url: string;
+}
+
 interface TileProps {
   title: string;
   description: string;
-  demoLink: string;
-  codeLink: string;
+  links: TileUrl[];
 }
 
-export const Tile = ({ title, description, demoLink, codeLink }: TileProps) => (
+export const Tile = ({ title, description, links }: TileProps) => (
   <TileBody>
     <TileHeader>{title}</TileHeader>
     <p>{description}</p>
     <TileList>
-      <li key={demoLink}>
-        Demo:{' '}
-        <TileLink href={demoLink} target="_blank">
-          Demo
-        </TileLink>
-      </li>
-      <li key={codeLink}>
-        Code:{' '}
-        <TileLink href={codeLink} target="_blank">
-          Repository
-        </TileLink>
-      </li>
+      {links.map((link) => (
+        <li key={link.id}>
+          {link.prefix}:{' '}
+          <TileLink href={link.url} target="_blank">
+            {link.label}
+          </TileLink>
+        </li>
+      ))}
     </TileList>
   </TileBody>
 );
