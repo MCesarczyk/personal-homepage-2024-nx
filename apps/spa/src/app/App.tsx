@@ -33,10 +33,12 @@ export const App = () => {
 
   const onThemeChange = (isDark: boolean) => {
     setDarkTheme(isDark);
-    localStorageService.setValue(
-      'PH_theme',
-      isDark ? 'darkTheme' : 'lightTheme'
-    );
+
+    isDark
+      ? document.documentElement.classList.add('dark')
+      : document.documentElement.classList.remove('dark');
+
+    localStorageService.setValue('theme', isDark ? 'dark' : 'light');
   };
 
   useEffect(() => {
