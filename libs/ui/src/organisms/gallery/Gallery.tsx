@@ -23,7 +23,7 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
       </GalleryLogoWrapper>
       <GalleryHeader>{title}</GalleryHeader>
       <GallerySubtitle>{subtitle}</GallerySubtitle>
-      {status === 'loading' && <Spinner message="be patient... " />}
+      {status === 'loading' && <Spinner message="Repositories are loading... " />}
       {status === 'error' && (
         <ErrorMessage
           address="lorem.ipsum@mail.co"

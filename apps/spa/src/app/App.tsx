@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
 
 import {
@@ -22,17 +22,28 @@ import {
   goals,
   thumbnails,
 } from '../assets/data';
-import { sampleRepositories } from './fixtures';
+import { sampleRepositories } from '../assets/data/repositories';
 import { localStorageService } from './localStorageService';
+import { AppState } from './types';
 
 export const App = () => {
   const initialTheme = localStorageService.getValue('PH_theme');
   const [isDarkTheme, setDarkTheme] = useState(initialTheme === 'darkTheme');
+  const [state, setState] = useState<AppState>('loading');
 
   const onThemeChange = (isDark: boolean) => {
     setDarkTheme(isDark);
-    localStorageService.setValue('PH_theme', isDark ? 'darkTheme' : 'lightTheme');
-  }
+    localStorageService.setValue(
+      'PH_theme',
+      isDark ? 'darkTheme' : 'lightTheme'
+    );
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setState('success');
+    }, 3_000);
+  }, []);
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
@@ -45,7 +56,7 @@ export const App = () => {
         <Gallery
           title={'Portfolio'}
           subtitle={'My recent projects'}
-          status="success"
+          status={state}
           repos={sampleRepositories.map((repo) => ({
             id: repo.id,
             name: repo.title,

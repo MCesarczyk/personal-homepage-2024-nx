@@ -1,3 +1,5 @@
+export type AppState = 'loading' | 'error' | 'success';
+
 export interface RepositoryDTO {
   id: number;
   title: string;

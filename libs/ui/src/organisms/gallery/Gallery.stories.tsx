@@ -1,7 +1,8 @@
-import type { Meta, StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
+import type { Meta, StoryFn } from '@storybook/react';
 
 import { Gallery } from './Gallery';
+import { sampleRepositories } from './fixtures';
 
 const meta: Meta<typeof Gallery> = {
   component: Gallery,
@@ -29,22 +30,7 @@ _Gallery.args = {
   title: 'Title',
   subtitle: 'Subtitle',
   status: 'success',
-  repos: [
-    {
-      id: 1,
-      name: 'Repository 1',
-      description: 'Description 1',
-      codeLink: 'https://repo1.com',
-      demoLink: 'https://demo1.com',
-    },
-    {
-      id: 2,
-      name: 'Repository 2',
-      description: 'Description 2',
-      codeLink: 'https://repo2.com',
-      demoLink: 'https://demo2.com',
-    },
-  ],
+  repos: sampleRepositories,
 };
 _Gallery.parameters = {
   backgrounds: {
