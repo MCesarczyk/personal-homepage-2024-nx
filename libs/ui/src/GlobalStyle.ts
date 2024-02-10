@@ -1,7 +1,8 @@
-import { darkMode } from "./theme";
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+import { CustomTheme } from "./types";
+
+export const GlobalStyle = createGlobalStyle<{theme: CustomTheme}>`
 
 html {
   box-sizing: border-box;
@@ -23,10 +24,10 @@ html, body {
 body {
   font-family: 'Inter', sans-serif;
   font-size: 18px;
-  background-color: ${darkMode.color.background};
-  color: ${darkMode.color.primary};
+  background-color: ${({ theme }) => theme.color.background};
+  color: ${({ theme }) => theme.color.primary};
 
-  @media (max-width: ${darkMode.breakpoints.mobileMax}) {
+  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
         font-size: 14px;
     }
 }

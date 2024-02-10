@@ -1,9 +1,7 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { ThemeProvider } from 'styled-components';
 import { Normalize } from 'styled-normalize';
 
-import { GlobalStyle, darkMode } from '@ui';
 import { App } from './app/App';
 
 const root = ReactDOM.createRoot(
@@ -11,10 +9,7 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <StrictMode>
-    <ThemeProvider theme={darkMode}>
-      <Normalize />
-      <GlobalStyle />
-      <App />
-    </ThemeProvider>
+    <Normalize />
+    <App />
   </StrictMode>
 );

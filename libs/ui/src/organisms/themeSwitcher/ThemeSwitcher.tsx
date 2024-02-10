@@ -23,7 +23,7 @@ export const ThemeSwitcher = ({
         </SwitcherCaption>
         <SwitcherIconWrapper>
           <SwitcherIcon shifted={isDarkTheme}>
-            <img src={SunIcon} alt="" />
+            <StyledSunIcon $inverted={!isDarkTheme} src={SunIcon} alt="" />
           </SwitcherIcon>
         </SwitcherIconWrapper>
       </SwitcherButton>
@@ -31,12 +31,12 @@ export const ThemeSwitcher = ({
   );
 };
 
-export const SwitcherButtonWrapper = styled.div`
+const SwitcherButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
 
-export const SwitcherButton = styled.button`
+const SwitcherButton = styled.button`
   z-index: 1;
   display: flex;
   align-items: center;
@@ -50,13 +50,13 @@ export const SwitcherButton = styled.button`
   background-color: transparent;
 `;
 
-export const SwitcherCaption = styled.span`
+const SwitcherCaption = styled.span`
   @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
     display: none;
   }
 `;
 
-export const SwitcherIconWrapper = styled.div`
+const SwitcherIconWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   border: 2px solid currentColor;
@@ -65,7 +65,7 @@ export const SwitcherIconWrapper = styled.div`
   height: 25px;
 `;
 
-export const SwitcherIcon = styled.div<{ shifted?: boolean }>`
+const SwitcherIcon = styled.div<{ shifted?: boolean }>`
   width: 50%;
   transition: 0.3s;
 
@@ -74,4 +74,8 @@ export const SwitcherIcon = styled.div<{ shifted?: boolean }>`
     css`
       transform: translateX(23px);
     `}
+`;
+
+const StyledSunIcon = styled.img<{ $inverted?: boolean }>`
+  filter: ${({ $inverted }) => ($inverted ? 'invert()' : 'none')};
 `;

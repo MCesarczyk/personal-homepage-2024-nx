@@ -1,14 +1,15 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ThumbnailProps {
   id: number;
   icon: string;
   url: string;
+  isDarkTheme?: boolean;
 }
 
-export const Thumbnail = ({ id, icon, url }: ThumbnailProps) => {
+export const Thumbnail = ({ id, icon, url, isDarkTheme }: ThumbnailProps) => {
   return (
-    <Wrapper key={id}>
+    <Wrapper key={id} {...{ isDarkTheme }}>
       <a href={url} target="_blank" rel="noopener noreferrer">
         <img src={icon} alt="" />
       </a>
@@ -16,7 +17,7 @@ export const Thumbnail = ({ id, icon, url }: ThumbnailProps) => {
   );
 };
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isDarkTheme?: boolean }>`
   width: 48px;
   margin: 24px;
   transition: 1s;
@@ -35,6 +36,12 @@ const Wrapper = styled.div`
     width: 32px;
     margin: 16px;
   }
+
+  ${({ isDarkTheme }) =>
+    !isDarkTheme &&
+    css`
+      filter: invert(1);
+    `}
 
   &:hover {
     color: ${({ theme }) => theme.color.themeColor};
