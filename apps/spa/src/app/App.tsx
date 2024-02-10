@@ -23,15 +23,22 @@ import {
   thumbnails,
 } from '../assets/data';
 import { sampleRepositories } from './fixtures';
+import { localStorageService } from './localStorageService';
 
 export const App = () => {
-  const [isDarkTheme, setDarkTheme] = useState(false);
+  const initialTheme = localStorageService.getValue('PH_theme');
+  const [isDarkTheme, setDarkTheme] = useState(initialTheme === 'darkTheme');
+
+  const onThemeChange = (isDark: boolean) => {
+    setDarkTheme(isDark);
+    localStorageService.setValue('PH_theme', isDark ? 'darkTheme' : 'lightTheme');
+  }
 
   return (
     <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
       <GlobalStyle />
       <Container>
-        <ThemeSwitcher {...{ isDarkTheme }} setDarkTheme={setDarkTheme} />
+        <ThemeSwitcher {...{ isDarkTheme }} setDarkTheme={onThemeChange} />
         <Header name={AUTHOR_NAME} description={AUTHOR_DESCRIPTION} />
         <Section title={'My skills'} elements={skills} />
         <Section title={'My closest goals'} elements={goals} />
