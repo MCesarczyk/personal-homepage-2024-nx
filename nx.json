@@ -10,7 +10,10 @@
       "!{projectRoot}/eslint.config.js",
       "!{projectRoot}/cypress/**/*",
       "!{projectRoot}/**/*.cy.[jt]s?(x)",
-      "!{projectRoot}/cypress.config.[jt]s"
+      "!{projectRoot}/cypress.config.[jt]s",
+      "!{projectRoot}/**/*.stories.@(js|jsx|ts|tsx|mdx)",
+      "!{projectRoot}/.storybook/**/*",
+      "!{projectRoot}/tsconfig.storybook.json"
     ],
     "sharedGlobals": []
   },
@@ -37,6 +40,15 @@
         "targetName": "e2e",
         "componentTestingTargetName": "component-test"
       }
+    },
+    {
+      "plugin": "@nx/storybook/plugin",
+      "options": {
+        "buildStorybookTargetName": "build-storybook",
+        "serveStorybookTargetName": "storybook",
+        "testStorybookTargetName": "test-storybook",
+        "staticStorybookTargetName": "static-storybook"
+      }
     }
   ],
   "generators": {
@@ -52,9 +64,17 @@
       },
       "library": {
         "style": "styled-components",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "vitest"
       }
     }
   },
-  "nxCloudAccessToken": "NzJjOGE4ODgtYWU4Mi00ZDk1LWFlZTQtMjdkNzczMDc1ODkzfHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NzJjOGE4ODgtYWU4Mi00ZDk1LWFlZTQtMjdkNzczMDc1ODkzfHJlYWQtd3JpdGU=",
+  "tasksRunnerOptions": {
+    "default": {
+      "options": {
+        "cacheableOperations": ["build-storybook"]
+      }
+    }
+  }
 }
