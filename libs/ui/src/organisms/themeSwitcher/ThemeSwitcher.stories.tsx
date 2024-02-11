@@ -2,6 +2,7 @@ import type { Meta, StoryFn } from '@storybook/react';
 import { ComponentProps, useEffect, useState } from 'react';
 
 import { ThemeSwitcher } from './ThemeSwitcher';
+import clsx from 'clsx';
 
 const meta: Meta<typeof ThemeSwitcher> = {
   component: ThemeSwitcher,
@@ -25,7 +26,7 @@ const Template: StoryFn<ComponentProps<typeof ThemeSwitcher>> = (args) => {
   }, [isDarkTheme]);
 
   return (
-    <div className="text-gray-900 bg-white dark:text-white dark:bg-gray-900 h-full w-full flex items-center justify-center p-6">
+    <div className={clsx(isDarkTheme ? "text-white bg-gray-900" :"text-gray-900 bg-white", "h-full w-full flex items-center justify-center p-6")}>
       <ThemeSwitcher {...args} {...{ isDarkTheme, toggleDarkTheme }} />
     </div>
   );
