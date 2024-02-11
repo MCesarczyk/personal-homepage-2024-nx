@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import styled from 'styled-components';
 
 import { Caption } from '../../atoms';
 
@@ -10,71 +9,18 @@ interface FooterProps {
 }
 
 export const Footer = ({ address, note, children }: FooterProps) => (
-  <FooterContainer>
-    <FooterHeader>
+  <div className="w-full md:w-1/2">
+    <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl">
       <Caption>CONTACT:</Caption>
-      <FooterLink id="contact" href={`mailto:${address}`}>
+      <a
+        className="my-3 mx-0 sm:my-4 md:my-5 lg:my-6 block font-black text-gray-900 dark:text-white transition-all duration-300 hover:text-blue-700"
+        id="contact"
+        href={`mailto:${address}`}
+      >
         {address}
-      </FooterLink>
-    </FooterHeader>
-    <FooterParagraph>{note}</FooterParagraph>
-    <FooterThumbnailWrapper>{children}</FooterThumbnailWrapper>
-  </FooterContainer>
+      </a>
+    </div>
+    <p className="mb-14">{note}</p>
+    <div className="flex">{children}</div>
+  </div>
 );
-
-const FooterContainer = styled.div`
-  width: 50%;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    width: 100%;
-  }
-`;
-
-const FooterHeader = styled.h2`
-  font-size: 32px;
-  margin: 0px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    font-size: 24px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 18px;
-  }
-`;
-
-const FooterLink = styled.a`
-  display: block;
-  font-weight: 900;
-  color: ${({ theme }) => theme.color.primary};
-  margin: 24px 0 24px 0;
-  transition: 0.3s;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    margin: 21px 0 21px 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    margin: 18px 0 18px 0;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    margin: 12px 0 12px 0;
-  }
-
-  &:hover {
-    color: ${({ theme }) => theme.color.themeColor};
-  }
-`;
-
-const FooterParagraph = styled.p`
-  margin-bottom: 56px;
-`;
-
-const FooterThumbnailWrapper = styled.div`
-  display: flex;
-`;

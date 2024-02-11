@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 interface TileUrl {
   id: number;
   prefix: string;
@@ -14,75 +12,25 @@ interface TileProps {
 }
 
 export const Tile = ({ title, description, links }: TileProps) => (
-  <TileBody>
-    <TileHeader>{title}</TileHeader>
+  <div className="text-left text-sm p-6 sm:p-10 md:text-base md:p-12 lg:p-14 rounded bg-white dark:bg-gray-800 border-4 border-gray-500 border-opacity-10 dark:border-opacity-10 shadow-lg shadow-gray-900 transition-all ease-in duration-300 hover:shadow-blue-500">
+    <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-700">
+      {title}
+    </h3>
     <p>{description}</p>
-    <TileList>
+    <ul className="list-none pl-0">
       {links.map((link) => (
         <li key={link.id}>
           {link.prefix}:{' '}
-          <TileLink href={link.url} target="_blank">
+          <a
+            className="text-blue-700"
+            href={link.url}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             {link.label}
-          </TileLink>
+          </a>
         </li>
       ))}
-    </TileList>
-  </TileBody>
+    </ul>
+  </div>
 );
-
-export const TileBody = styled.div`
-  text-align: left;
-  padding: 56px;
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.color.secondaryBackground};
-  border: ${({ theme }) => theme.border};
-  box-shadow: ${({ theme }) => theme.shadow};
-  transition: color ease-in 2s, background-color ease-in 2s,
-    box shadow ease-in 1s;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    font-size: 16px;
-    padding: 48px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    font-size: 14px;
-    padding: 40px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 14px;
-    padding: 24px;
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.themeColor};
-  }
-`;
-
-export const TileHeader = styled.h3`
-  font-size: 24px;
-  font-weight: 700;
-  color: ${({ theme }) => theme.color.themeColor};
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    font-size: 22px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    font-size: 20px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 16px;
-  }
-`;
-
-export const TileList = styled.ul`
-  list-style: none;
-  padding-left: 0px;
-`;
-
-export const TileLink = styled.a`
-  color: ${({ theme }) => theme.color.themeColor};
-`;

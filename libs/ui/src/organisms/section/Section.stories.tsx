@@ -1,7 +1,7 @@
 import type { Meta, StoryFn } from '@storybook/react';
 import { ComponentProps } from 'react';
 
-import Section from './Section';
+import { Section } from './Section';
 
 const meta: Meta<typeof Section> = {
   component: Section,
@@ -10,7 +10,7 @@ const meta: Meta<typeof Section> = {
   argTypes: {
     title: { control: 'text', description: 'Section title' },
     elements: { control: 'array', description: 'Section list items' },
-  }
+  },
 };
 export default meta;
 

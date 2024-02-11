@@ -1,7 +1,7 @@
-import styled from "styled-components";
+interface CaptionProps {
+  children: string;
+}
 
-export const Caption = styled.p`
-    font-size: 12px;
-    font-weight: 700;
-    color: ${({ theme }) => theme.color.secondary};
-`;
+export const Caption = ({ children }: CaptionProps) => (
+  <p className="text-xs font-bold text-gray-700 dark:text-white">{children}</p>
+);

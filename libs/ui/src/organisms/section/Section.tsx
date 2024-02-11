@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import circle from './listStyleCircle.svg';
 
 interface SectionProps {
@@ -8,96 +6,21 @@ interface SectionProps {
 }
 
 export const Section = ({ title, elements }: SectionProps) => (
-  <StyledSection>
-    <SectionHeader>{title}</SectionHeader>
-    <SectionList>
+  <section className="p-8 pl-4 md:pl-6 lg:pl-8 my-8 mx-auto rounded bg-white dark:bg-gray-800 border-4 border-gray-500 border-opacity-10 dark:border-opacity-10 shadow-lg shadow-gray-900 transition-all ease-in duration-300 hover:shadow-blue-500">
+    <h2 className="text-lg sm:text-2xl md:text-3xl font-black m-0 mb-2">
+      {title}
+    </h2>
+    <ul className="text-lg sm:text-2xl md:text-3xl font-black m-0 grid grid-cols-2">
       {elements.map((element) => (
-        <SectionListItem key={element}>
-          <SectionListItemImage src={circle} />
+        <li className="mb-2 text-lg font-normal flex" key={element}>
+          <img
+            className="w-1 mr-2 sm:w-[6px] md:w-2 md:mr-3 lg:w-[10px] lg:mr-4"
+            src={circle}
+            alt=""
+          />
           {element}
-        </SectionListItem>
+        </li>
       ))}
-    </SectionList>
-  </StyledSection>
+    </ul>
+  </section>
 );
-
-export const StyledSection = styled.section`
-  box-shadow: 2px;
-  padding: 32px;
-  margin: 32px auto;
-  border-radius: 4px;
-  background-color: ${({ theme }) => theme.color.secondaryBackground};
-  box-shadow: ${({ theme }) => theme.shadow};
-  transition: color ease-in 2s, background-color ease-in 2s,
-    box shadow ease-in 1s;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    padding-left: 24px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    padding-left: 16px;
-  }
-
-  &:hover {
-    box-shadow: 0px 0px 6px 0px ${({ theme }) => theme.color.themeColor};
-  }
-`;
-
-export const SectionHeader = styled.h2`
-  font-size: 30px;
-  font-weight: 900;
-  margin: 0px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    font-size: 24px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 18px;
-  }
-`;
-
-export const SectionList = styled.ul`
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  color: ${({ theme }) => theme.color.secondary};
-  padding-left: 16px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    grid-template-columns: 1fr 1fr;
-    font-size: 16px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    grid-template-columns: 1fr;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 14px;
-  }
-`;
-
-export const SectionListItem = styled.li`
-  margin-bottom: 8px;
-`;
-
-export const SectionListItemImage = styled.img`
-  width: 9px;
-  margin-right: 16px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    width: 8px;
-    margin-right: 14px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    width: 7px;
-    margin-right: 12px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    width: 6px;
-    margin-right: 8px;
-  }
-`;

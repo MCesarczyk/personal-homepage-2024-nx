@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import circle from './loaderCircle.svg';
 
 interface SpinnerProps {
@@ -8,30 +6,11 @@ interface SpinnerProps {
 
 export const Spinner = ({ message }: SpinnerProps) => (
   <>
-    <LoaderCaption>{message}</LoaderCaption>
-    <LoaderCircle src={circle} alt=""></LoaderCircle>
+    <p className="text-xl mt-20">{message}</p>
+    <img
+      className="m-12 mb-36 animate-spin duration-1000"
+      src={circle}
+      alt=""
+    ></img>
   </>
 );
-
-export const LoaderCaption = styled.p`
-  font-size: 20px;
-  margin-top: 88px;
-`;
-
-export const LoaderCircle = styled.img`
-  margin: 48px;
-  margin-bottom: 140px;
-
-  @media (prefers-reduced-motion: no-preference) {
-    animation: Element-spin infinite 2s linear;
-  }
-
-  @keyframes Element-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-`;

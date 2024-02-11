@@ -1,38 +1,14 @@
-import styled from "styled-components";
+import { ComponentProps, ReactNode } from 'react';
 
-export const Link = styled.a`
-    display: inline-flex;
-    align-items: center;
-    font-size: 20px;
-    padding: 12px 16px;
-    border-radius: 4px;
-    color: ${({ theme }) => theme.color.buttonText};
-    background-color: ${({ theme }) => theme.color.themeColor};
-    border: 1px solid ${({ theme }) => theme.color.elementBorder};
-    transition: 0.3s;
+interface LinkProps {
+  children: ReactNode;
+}
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-        font-size: 18px;
-        padding: 10px 14px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-        font-size: 16px;
-        padding: 8px 12px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-        font-size: 14px;
-        padding: 6px 10px;
-    }
-
-    &:hover {
-        filter: brightness(120%);
-        transform: scale(1.05);
-    }
-
-    &:active {
-        filter: brightness(120%);
-        transform: scale(1.0);
-    }
-`;
+export const Link = ({ children, href }: ComponentProps<'a'> & LinkProps) => (
+  <a
+    {...{ href }}
+    className="inline-flex items-center text-sm sm:text-base md:text-lg lg:text-xl py-2 md:py-3 px-3 md:px-4 rounded text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-600 hover:scale-105 active:scale-100 transition-all duration-300 border border-gray-700 dark:border-gray-300"
+  >
+    {children}
+  </a>
+);

@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import GithubLogo from './githubLogo.svg';
 import { Spinner } from '../../atoms/spinner';
 import { ErrorMessage } from '../../molecules/errorMessage';
@@ -15,15 +13,19 @@ interface GalleryProps {
 
 export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
   return (
-    <GalleryWrapper>
-      <GalleryLogoWrapper>
-        <GalleryLogo>
+    <div className="text-center mb-32">
+      <div className="flex justify-center">
+        <div className="w-10 m-3 transition-all duration-500 hover:brightness-150 hover:scale-125">
           <img src={GithubLogo} alt="" />
-        </GalleryLogo>
-      </GalleryLogoWrapper>
-      <GalleryHeader>{title}</GalleryHeader>
-      <GallerySubtitle>{subtitle}</GallerySubtitle>
-      {status === 'loading' && <Spinner message="Repositories are loading... " />}
+        </div>
+      </div>
+      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black m-0">
+        {title}
+      </h2>
+      <p className="text-base sm:text-xl mb-4">{subtitle}</p>
+      {status === 'loading' && (
+        <Spinner message="Repositories are loading... " />
+      )}
       {status === 'error' && (
         <ErrorMessage
           address="lorem.ipsum@mail.co"
@@ -32,7 +34,7 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
         />
       )}
       {status === 'success' && (
-        <GalleryTilesContainer>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {repos.map((repo) => (
             <Tile
               key={repo.id}
@@ -54,65 +56,8 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
               ]}
             />
           ))}
-        </GalleryTilesContainer>
+        </div>
       )}
-    </GalleryWrapper>
+    </div>
   );
 };
-
-export const GalleryWrapper = styled.div`
-  text-align: center;
-  margin-bottom: 120px;
-`;
-
-export const GalleryLogoWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-export const GalleryLogo = styled.div`
-  width: 40px;
-  margin: 12px;
-  transition: 1s;
-
-  &:hover {
-    filter: brightness(150%);
-    transform: scale(120%);
-  }
-`;
-
-export const GalleryHeader = styled.h2`
-  font-size: 30px;
-  font-weight: 900;
-  margin: 0px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    font-size: 28px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    font-size: 24px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 18px;
-  }
-`;
-
-export const GallerySubtitle = styled.p`
-  font-size: 20px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    font-size: 17px;
-  }
-`;
-
-export const GalleryTilesContainer = styled.div`
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: 32px;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    grid-template-columns: minmax(0, 1fr);
-  }
-`;

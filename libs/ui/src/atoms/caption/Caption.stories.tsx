@@ -9,9 +9,6 @@ const meta: Meta<typeof Caption> = {
   tags: ['autodocs'],
   argTypes: {
     children: { control: 'text', description: 'Caption text' },
-    theme: { table: { disable: true } },
-    as: { table: { disable: true } },
-    forwardedAs: { table: { disable: true } },
   },
 };
 export default meta;
