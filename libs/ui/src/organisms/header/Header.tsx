@@ -1,6 +1,6 @@
 import { Caption, Link } from '../../atoms';
 
-import photo from './portrait.png';
+import photo from './portrait.webp';
 import EnvelopeIcon from './envelopeIcon.svg';
 
 interface HeaderProps {

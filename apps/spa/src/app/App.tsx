@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import styled, { ThemeProvider } from 'styled-components';
 
 import {
   Section,
@@ -8,9 +7,6 @@ import {
   Header,
   ThemeSwitcher,
   Thumbnail,
-  lightMode,
-  darkMode,
-  GlobalStyle,
 } from '@ui';
 
 import {
@@ -26,20 +22,24 @@ import { sampleRepositories } from '../assets/data/repositories';
 import { localStorageService } from './localStorageService';
 import { AppState } from './types';
 
+type Theme = 'light' | 'dark';
+
 export const App = () => {
-  const initialTheme = localStorageService.getValue('PH_theme');
-  const [isDarkTheme, setDarkTheme] = useState(initialTheme === 'darkTheme');
+  const initialTheme = localStorageService.getValue('theme', 'light' as Theme);
+  const [isDarkTheme, setDarkTheme] = useState(initialTheme === 'dark');
   const [state, setState] = useState<AppState>('loading');
 
-  const onThemeChange = (isDark: boolean) => {
-    setDarkTheme(isDark);
+  const onThemeChange = () => {
+    setDarkTheme(!isDarkTheme);
 
-    isDark
+    localStorageService.setValue('theme', !isDarkTheme ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    isDarkTheme
       ? document.documentElement.classList.add('dark')
       : document.documentElement.classList.remove('dark');
-
-    localStorageService.setValue('theme', isDark ? 'dark' : 'light');
-  };
+  }, [isDarkTheme]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,38 +48,31 @@ export const App = () => {
   }, []);
 
   return (
-    <ThemeProvider theme={isDarkTheme ? darkMode : lightMode}>
-      <GlobalStyle />
-      <Container>
-        <ThemeSwitcher {...{ isDarkTheme }} setDarkTheme={onThemeChange} />
-        <Header name={AUTHOR_NAME} description={AUTHOR_DESCRIPTION} />
-        <Section title={'My skills'} elements={skills} />
-        <Section title={'My closest goals'} elements={goals} />
-        <Gallery
-          title={'Portfolio'}
-          subtitle={'My recent projects'}
-          status={state}
-          repos={sampleRepositories.map((repo) => ({
-            id: repo.id,
-            name: repo.title,
-            description: repo.description,
-            codeLink: repo.html_url,
-            demoLink: repo.homepage,
-          }))}
-        />
-        <Footer note={FOOTER_NOTE} address={ADDRESS}>
-          {thumbnails.map((thumbnail) => (
-            <Thumbnail {...thumbnail} {...{ isDarkTheme }} />
-          ))}
-        </Footer>
-      </Container>
-    </ThemeProvider>
+    <div className="h-full py-12 px-6 max-w-5xl my-0 mx-auto bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+      <ThemeSwitcher
+        isDarkTheme={isDarkTheme}
+        toggleDarkTheme={onThemeChange}
+      />
+      <Header name={AUTHOR_NAME} description={AUTHOR_DESCRIPTION} />
+      <Section title={'My skills'} elements={skills} />
+      <Section title={'My closest goals'} elements={goals} />
+      <Gallery
+        title={'Portfolio'}
+        subtitle={'My recent projects'}
+        status={state}
+        repos={sampleRepositories.map((repo) => ({
+          id: repo.id,
+          name: repo.title,
+          description: repo.description,
+          codeLink: repo.html_url,
+          demoLink: repo.homepage,
+        }))}
+      />
+      <Footer note={FOOTER_NOTE} address={ADDRESS}>
+        {thumbnails.map((thumbnail) => (
+          <Thumbnail {...thumbnail} />
+        ))}
+      </Footer>
+    </div>
   );
 };
-
-export const Container = styled.div`
-  height: 100%;
-  padding: 48px 24px;
-  max-width: 1000px;
-  margin: 0 auto;
-`;

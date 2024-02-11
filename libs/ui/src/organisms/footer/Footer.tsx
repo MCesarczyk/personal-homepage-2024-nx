@@ -13,7 +13,7 @@ export const Footer = ({ address, note, children }: FooterProps) => (
     <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl">
       <Caption>CONTACT:</Caption>
       <a
-        className="my-3 mx-0 sm:my-4 md:my-5 lg:my-6 block font-black text-slate-900 dark:text-white transition-all duration-300 hover:text-blue-700"
+        className="my-3 mx-0 sm:my-4 md:my-5 lg:my-6 block font-black text-gray-900 dark:text-white transition-all duration-300 hover:text-blue-700"
         id="contact"
         href={`mailto:${address}`}
       >

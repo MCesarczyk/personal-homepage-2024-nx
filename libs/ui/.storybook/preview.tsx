@@ -1,8 +1,4 @@
 import type { Preview } from '@storybook/react';
-import { ThemeProvider } from 'styled-components';
-
-import { GlobalStyle } from '../src/GlobalStyle';
-import { darkMode } from '../src/theme';
 
 const preview: Preview = {
   parameters: {
@@ -19,14 +15,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [
-    (Story) => (
-      <ThemeProvider theme={darkMode}>
-        <GlobalStyle />
-        <Story />
-      </ThemeProvider>
-    ),
-  ],
+  decorators: [],
 };
 
 export default preview;

@@ -7,7 +7,7 @@ interface LinkProps {
 export const Link = ({ children, href }: ComponentProps<'a'> & LinkProps) => (
   <a
     {...{ href }}
-    className="inline-flex items-center text-sm sm:text-base md:text-lg lg:text-xl py-2 md:py-3 px-3 md:px-4 rounded text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-600 hover:scale-105 active:scale-100 transition-all duration-300 border border-slate-300"
+    className="inline-flex items-center text-sm sm:text-base md:text-lg lg:text-xl py-2 md:py-3 px-3 md:px-4 rounded text-white bg-blue-700 hover:bg-blue-600 active:bg-blue-600 hover:scale-105 active:scale-100 transition-all duration-300 border border-gray-700 dark:border-gray-300"
   >
     {children}
   </a>
