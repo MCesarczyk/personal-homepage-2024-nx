@@ -1,5 +1,5 @@
 import { ComponentProps } from 'react';
-import { Container } from '../../styled';
+import { Container } from '../../Container';
 
 import type { Meta, StoryFn } from '@storybook/react';
 
