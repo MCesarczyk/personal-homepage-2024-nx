@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import clsx from 'clsx';
 
 import SunIcon from './sun.svg';
 
@@ -16,66 +16,25 @@ export const ThemeSwitcher = ({
   };
 
   return (
-    <SwitcherButtonWrapper>
-      <SwitcherButton onClick={onThemeSwitch}>
-        <SwitcherCaption>
+    <div className="flex justify-end">
+      <button
+        className="flex items-center justify-end gap-3 text-xs h-6 p-0 border-none text-blue-700 bg-transparent"
+        onClick={onThemeSwitch}
+      >
+        <span className="hidden sm:block">
           {`${isDarkTheme ? 'DARK' : 'LIGHT'}`}&nbsp;MODE&nbsp;ON
-        </SwitcherCaption>
-        <SwitcherIconWrapper>
-          <SwitcherIcon shifted={isDarkTheme}>
-            <StyledSunIcon $inverted={!isDarkTheme} src={SunIcon} alt="" />
-          </SwitcherIcon>
-        </SwitcherIconWrapper>
-      </SwitcherButton>
-    </SwitcherButtonWrapper>
+        </span>
+        <div className="flex justify-start border-2 rounded-2xl w-16 h-8">
+          <div
+            className={clsx(
+              'w-1/2 transition-all duration-300',
+              isDarkTheme && 'translate-x-8'
+            )}
+          >
+            <img className={clsx(!isDarkTheme && 'invert')} src={SunIcon} alt="" />
+          </div>
+        </div>
+      </button>
+    </div>
   );
 };
-
-const SwitcherButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const SwitcherButton = styled.button`
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  font-size: 12px;
-  height: 24px;
-  padding: 0px;
-  border: none;
-  color: ${({ theme }) => theme.color.primary};
-  background-color: transparent;
-`;
-
-const SwitcherCaption = styled.span`
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    display: none;
-  }
-`;
-
-const SwitcherIconWrapper = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  border: 2px solid currentColor;
-  border-radius: 16px;
-  width: 48px;
-  height: 25px;
-`;
-
-const SwitcherIcon = styled.div<{ shifted?: boolean }>`
-  width: 50%;
-  transition: 0.3s;
-
-  ${({ shifted }) =>
-    shifted &&
-    css`
-      transform: translateX(23px);
-    `}
-`;
-
-const StyledSunIcon = styled.img<{ $inverted?: boolean }>`
-  filter: ${({ $inverted }) => ($inverted ? 'invert()' : 'none')};
-`;

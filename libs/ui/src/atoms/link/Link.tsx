@@ -1,7 +1,7 @@
-import { ComponentProps } from 'react';
+import { ComponentProps, ReactNode } from 'react';
 
 interface LinkProps {
-  children: string;
+  children: ReactNode;
 }
 
 export const Link = ({ children, href }: ComponentProps<'a'> & LinkProps) => (

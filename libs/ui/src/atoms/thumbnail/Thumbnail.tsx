@@ -1,51 +1,18 @@
-import styled, { css } from 'styled-components';
-
 interface ThumbnailProps {
   id: number;
   icon: string;
   url: string;
-  isDarkTheme?: boolean;
 }
 
-export const Thumbnail = ({ id, icon, url, isDarkTheme }: ThumbnailProps) => {
+export const Thumbnail = ({ id, icon, url }: ThumbnailProps) => {
   return (
-    <Wrapper key={id} {...{ isDarkTheme }}>
+    <div
+      className="w-8 m-4 sm:w-10 sm:m-5 md:w-11 md:m-6 lg:w-12 lg:m-6 transition-all duration-500 invert dark:invert-0 hover:brightness-75 hover:scale-110"
+      key={id}
+    >
       <a href={url} target="_blank" rel="noopener noreferrer">
         <img src={icon} alt="" />
       </a>
-    </Wrapper>
+    </div>
   );
 };
-
-const Wrapper = styled.div<{ isDarkTheme?: boolean }>`
-  width: 48px;
-  margin: 24px;
-  transition: 1s;
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.netbookMax}) {
-    width: 42px;
-    margin: 21px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-    width: 40px;
-    margin: 20px;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-    width: 32px;
-    margin: 16px;
-  }
-
-  ${({ isDarkTheme }) =>
-    !isDarkTheme &&
-    css`
-      filter: invert(1);
-    `}
-
-  &:hover {
-    color: ${({ theme }) => theme.color.themeColor};
-    filter: brightness(50%);
-    transform: scale(110%);
-  }
-`;

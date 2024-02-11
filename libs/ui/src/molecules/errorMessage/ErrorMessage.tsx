@@ -1,5 +1,3 @@
-import styled from 'styled-components';
-
 import WarningSign from './warningSign.svg';
 import { Link } from '../../atoms';
 
@@ -15,11 +13,11 @@ export const ErrorMessage = ({
   address,
 }: ErrorMessageProps) => (
   <>
-    <WarningSignWrapper>
-      <img src={WarningSign} alt='' />
-    </WarningSignWrapper>
-    <ErrorHeader>{errorMessage}</ErrorHeader>
-    <ErrorCaption>{errorDescription}</ErrorCaption>
+    <div className="mt-24 mb-6">
+      <img src={WarningSign} alt="" />
+    </div>
+    <h3 className="text-2xl">{errorMessage}</h3>
+    <p className="text-xl my-8 mx-auto">{errorDescription}</p>
     <Link>
       <a href={address} target="_blank" rel="noreferrer">
         Go to Github
@@ -27,17 +25,3 @@ export const ErrorMessage = ({
     </Link>
   </>
 );
-
-export const WarningSignWrapper = styled.div`
-  margin-top: 96px;
-  margin-bottom: 24px;
-`;
-
-export const ErrorHeader = styled.h3`
-  font-size: 24px;
-`;
-
-export const ErrorCaption = styled.p`
-  font-size: 20px;
-  margin: 32px auto;
-`;

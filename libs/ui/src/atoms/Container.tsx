@@ -1,17 +1,11 @@
-import styled from "styled-components";
+import { ReactNode } from 'react';
 
-export const Container = styled.div`
-    max-width: ${({ theme }) => theme.breakpoints.notebookMax};
-    min-width: ${({ theme }) => theme.breakpoints.mobileMin};
-    margin: 0 auto;
-    padding: 32px;
-    transition: color 1s, background-color 1s;
+interface ContainerProps {
+  children: ReactNode;
+}
 
-    @media (max-width: ${({ theme }) => theme.breakpoints.tabletMax}) {
-        padding: 24px;
-    }
-
-    @media (max-width: ${({ theme }) => theme.breakpoints.mobileMax}) {
-        padding: 16px;
-    }
-`;
+export const Container = ({ children }: ContainerProps) => (
+  <div className="max-w-7xl min-w-80 my-0 mx-auto p-4 sm:p-6 md:p-8 transition-all duration-500">
+    {children}
+  </div>
+);
