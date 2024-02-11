@@ -13,11 +13,7 @@ const meta: Meta<typeof App> = {
 };
 export default meta;
 
-const Template: StoryFn<ComponentProps<typeof App>> = (args) => (
-  <div className="text-gray-900 bg-white dark:text-white dark:bg-gray-900 h-full w-full flex items-center justify-center p-6">
-    <App />
-  </div>
-);
+const Template: StoryFn<ComponentProps<typeof App>> = (args) => <App />;
 
 export const _App = Template.bind({});
 _App.args = {

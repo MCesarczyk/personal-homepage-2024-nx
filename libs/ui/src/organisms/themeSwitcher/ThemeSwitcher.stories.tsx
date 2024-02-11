@@ -26,7 +26,7 @@ const Template: StoryFn<ComponentProps<typeof ThemeSwitcher>> = (args) => {
   }, [isDarkTheme]);
 
   return (
-    <div className={clsx(isDarkTheme ? "text-white bg-gray-900" :"text-gray-900 bg-white", "h-full w-full flex items-center justify-center p-6")}>
+    <div className={clsx(isDarkTheme ? "text-white bg-gray-900" : "text-gray-900 bg-white", "h-full w-full flex items-center justify-center p-6")}>
       <ThemeSwitcher {...args} {...{ isDarkTheme, toggleDarkTheme }} />
     </div>
   );
