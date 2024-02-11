@@ -14,13 +14,13 @@ export const ThemeSwitcher = ({
   return (
     <div className="flex justify-end relative z-10">
       <button
-        className="flex items-center justify-end gap-3 text-xs h-6 p-0 border-none text-blue-700 bg-transparent"
+        className="flex items-center justify-end gap-3 text-xs h-6 p-0 border-none bg-transparent"
         onClick={toggleDarkTheme}
       >
-        <span className="hidden sm:block text-gray-900 dark:text-white">
+        <span className="hidden sm:block text-inherit">
           {`${isDarkTheme ? 'DARK' : 'LIGHT'}`}&nbsp;MODE&nbsp;ON
         </span>
-        <div className="flex justify-start border-2 rounded-2xl border-gray-900 dark:border-white w-16 h-8">
+        <div className="flex justify-start border-2 border-inherit rounded-2xl w-16 h-8">
           <div
             className={clsx(
               'w-1/2 transition-all duration-300',
