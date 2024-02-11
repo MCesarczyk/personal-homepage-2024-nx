@@ -13,7 +13,7 @@ interface GalleryProps {
 
 export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mb-24">
       <div className="flex justify-center">
         <div className="w-10 m-3 transition-all duration-500 hover:brightness-150 hover:scale-125">
           <img src={GithubLogo} alt="" />
