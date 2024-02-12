@@ -42,3 +42,6 @@ Thumbs.db
 /apps/*/.vite/
 
 storybook-static
+
+# Next.js
+.next
