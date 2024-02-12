@@ -18,6 +18,8 @@ import {
   goals,
   sampleRepositories,
   thumbnails,
+  portrait,
+  envelopeIcon,
 } from '@assets';
 import { localStorageService } from '@services';
 import { AppState, Theme } from '@types';
@@ -51,7 +53,14 @@ export const App = () => {
         isDarkTheme={isDarkTheme}
         toggleDarkTheme={onThemeChange}
       />
-      <Header name={AUTHOR_NAME} description={AUTHOR_DESCRIPTION} />
+      <Header
+        name={AUTHOR_NAME}
+        description={AUTHOR_DESCRIPTION}
+        Portrait={
+          <img className="min-w-32 w-1/2 md:w-96" src={portrait} alt="portrait" />
+        }
+        ButtonIcon={<img src={envelopeIcon} alt="" />}
+      />
       <Section title={'My skills'} elements={skills} />
       <Section title={'My closest goals'} elements={goals} />
       <Gallery
@@ -68,7 +77,7 @@ export const App = () => {
       />
       <Footer note={FOOTER_NOTE} address={ADDRESS}>
         {thumbnails.map((thumbnail) => (
-          <Thumbnail {...thumbnail} />
+          <Thumbnail key={thumbnail.id} {...thumbnail} />
         ))}
       </Footer>
     </div>

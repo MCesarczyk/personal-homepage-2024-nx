@@ -1,17 +1,26 @@
 import { Caption, Link } from '../../atoms';
 
-import photo from './portrait.webp';
-import EnvelopeIcon from './envelopeIcon.svg';
+// import photo from './portrait.webp';
+// import EnvelopeIcon from './envelopeIcon.svg';
+import { ReactNode } from 'react';
 
 interface HeaderProps {
   name: string;
   description: string;
+  Portrait: ReactNode;
+  ButtonIcon: ReactNode;
 }
 
-export const Header = ({ name, description }: HeaderProps) => (
+export const Header = ({
+  name,
+  description,
+  Portrait,
+  ButtonIcon,
+}: HeaderProps) => (
   <header className="grid grid-cols-1 gap-0 md:grid-cols-[auto_1fr] items-center md:gap-16 mt-[-30px]">
     <div>
-      <img className="min-w-32 w-1/2 md:w-96" src={photo} alt="portrait" />
+      {/* <img className="min-w-32 w-1/2 md:w-96" src={photo} alt="portrait" /> */}
+      {Portrait}
     </div>
     <div>
       <Caption>THIS IS:</Caption>
@@ -21,7 +30,8 @@ export const Header = ({ name, description }: HeaderProps) => (
       <p className="mb-8">{description}</p>
       <Link href="#contact">
         <div className="w-6 h-5 mr-3 sm:mr-4 md:mr-5 sm:scale-110 md:scale-125">
-          <img src={EnvelopeIcon} alt="" />
+          {/* <img src={EnvelopeIcon} alt="" /> */}
+          {ButtonIcon}
         </div>
         Contact
       </Link>

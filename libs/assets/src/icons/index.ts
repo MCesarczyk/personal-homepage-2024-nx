@@ -1,3 +1,4 @@
-import githubThumbnail from './githubThumbnail.svg';
+import envelopeIcon from './envelopeIcon.svg';
 
+export { envelopeIcon };
 export * from '.';
