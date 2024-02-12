@@ -1,4 +1,5 @@
 export * from './adresses';
 export * from './constants';
-export * from './footerThumbnails';
 export * from './skills';
+export * from './repositories';
+export * from './footerThumbnails';

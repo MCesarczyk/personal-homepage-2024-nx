@@ -15,7 +15,13 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@ui": ["libs/ui/src/index.ts"]
+      "@personal-homepage-2024/assets": ["libs/assets/src/index.ts"],
+      "@personal-homepage-2024/services": ["libs/services/src/index.ts"],
+      "@personal-homepage-2024/types": ["libs/types/src/index.ts"],
+      "@services": ["libs/services/src/index.ts"],
+      "@types": ["libs/types/src/index.ts"],
+      "@ui": ["libs/ui/src/index.ts"],
+      "@assets": ["libs/assets/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

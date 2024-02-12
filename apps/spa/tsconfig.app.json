@@ -23,5 +23,5 @@
     "**/*.stories.jsx",
     "**/*.stories.tsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx"]
+  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "../../libs/types/src/types.ts", "../../libs/services/src/localStorageService.ts", "../../libs/assets/src/data/footerThumbnails.ts"]
 }

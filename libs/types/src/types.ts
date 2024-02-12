@@ -1,5 +1,7 @@
 export type AppState = 'loading' | 'error' | 'success';
 
+export type Theme = 'light' | 'dark';
+
 export interface RepositoryDTO {
   id: number;
   title: string;

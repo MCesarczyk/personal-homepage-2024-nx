@@ -16,13 +16,11 @@ import {
   FOOTER_NOTE,
   skills,
   goals,
+  sampleRepositories,
   thumbnails,
-} from '../assets/data';
-import { sampleRepositories } from '../assets/data/repositories';
-import { localStorageService } from './localStorageService';
-import { AppState } from './types';
-
-type Theme = 'light' | 'dark';
+} from '@assets';
+import { localStorageService } from '@services';
+import { AppState, Theme } from '@types';
 
 export const App = () => {
   const initialTheme = localStorageService.getValue('theme', 'light' as Theme);

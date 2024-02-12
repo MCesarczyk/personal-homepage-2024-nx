@@ -1,6 +1,4 @@
-import { RepositoryDTO } from "../../app/types";
-
-export const sampleRepositories: RepositoryDTO[] = [
+export const sampleRepositories = [
   {
     id: 1,
     title: "CNC Calc React",
