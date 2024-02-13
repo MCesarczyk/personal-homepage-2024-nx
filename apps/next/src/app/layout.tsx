@@ -2,7 +2,7 @@ import { Inter } from '@next/font/google';
 
 import './global.css';
 
-export const inter = Inter({
+const inter = Inter({
   subsets: ['latin'],
   display: 'swap',
   // weight: ['400', '700', '900'],
