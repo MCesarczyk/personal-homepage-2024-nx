@@ -1,4 +1,12 @@
+import { Inter } from '@next/font/google';
+
 import './global.css';
+
+export const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  // weight: ['400', '700', '900'],
+});
 
 export const metadata = {
   title: 'Welcome to next',
@@ -11,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={inter.className}>
       <body>{children}</body>
     </html>
   );
