@@ -1,4 +1,4 @@
-import GithubLogo from './githubLogo.svg';
+import { GitHubLogo } from '@assets';
 import { Spinner } from '../../atoms/spinner';
 import { ErrorMessage } from '../../molecules/errorMessage';
 import { Tile } from '../../molecules/tile';
@@ -15,8 +15,8 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
   return (
     <div className="flex flex-col items-center mb-24">
       <div className="flex justify-center">
-        <div className="w-10 m-3 transition-all duration-500 hover:brightness-150 hover:scale-125">
-          <img src={GithubLogo} alt="" />
+        <div className="w-24 m-3 transition-all duration-500 hover:brightness-150 hover:scale-110">
+          <GitHubLogo />
         </div>
       </div>
       <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black m-0">

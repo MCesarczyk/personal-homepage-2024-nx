@@ -1,4 +1,4 @@
-import circle from './listStyleCircle.svg';
+import { ListStyleCircle } from '@assets';
 
 interface SectionProps {
   title: string;
@@ -13,11 +13,9 @@ export const Section = ({ title, elements }: SectionProps) => (
     <ul className="text-lg sm:text-2xl md:text-3xl font-black m-0 grid grid-cols-2">
       {elements.map((element) => (
         <li className="mb-2 text-lg font-normal flex" key={element}>
-          <img
-            className="w-1 mr-2 sm:w-[6px] md:w-2 md:mr-3 lg:w-[10px] lg:mr-4"
-            src={circle}
-            alt=""
-          />
+          <div className="w-1 mr-2 sm:w-[6px] md:w-2 md:mr-3 lg:w-[10px] lg:mr-4 flex items-center">
+            <ListStyleCircle />
+          </div>
           {element}
         </li>
       ))}

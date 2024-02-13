@@ -1,4 +1,4 @@
-import WarningSign from './warningSign.svg';
+import { WarningSign } from '@assets';
 import { Link } from '../../atoms';
 
 interface ErrorMessageProps {
@@ -14,7 +14,7 @@ export const ErrorMessage = ({
 }: ErrorMessageProps) => (
   <>
     <div className="mt-24 mb-6">
-      <img src={WarningSign} alt="" />
+      <WarningSign />
     </div>
     <h3 className="text-2xl">{errorMessage}</h3>
     <p className="text-xl my-8 mx-auto">{errorDescription}</p>

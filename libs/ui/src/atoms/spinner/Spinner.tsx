@@ -1,4 +1,4 @@
-import circle from './loaderCircle.svg';
+import { LoaderCircle } from '@assets';
 
 interface SpinnerProps {
   message: string;
@@ -7,10 +7,8 @@ interface SpinnerProps {
 export const Spinner = ({ message }: SpinnerProps) => (
   <>
     <p className="text-xl mt-20">{message}</p>
-    <img
-      className="m-12 mb-36 animate-spin duration-1000"
-      src={circle}
-      alt=""
-    ></img>
+    <div className="m-12 mb-36 animate-spin duration-1000">
+      <LoaderCircle />
+    </div>
   </>
 );

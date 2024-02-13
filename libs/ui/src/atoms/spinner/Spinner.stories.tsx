@@ -22,7 +22,7 @@ const Template: StoryFn<ComponentProps<typeof Spinner>> = (args) => (
 
 export const _Spinner = Template.bind({});
 _Spinner.args = {
-  message: 'Please wait while projects are being loaded...',
+  message: 'Please be patient...',
 };
 _Spinner.parameters = {
   backgrounds: {

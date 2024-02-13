@@ -5,6 +5,7 @@ import {
   Gallery,
   Footer,
   Thumbnail,
+  footerThumbnails,
 } from '@ui';
 
 import {
@@ -15,9 +16,7 @@ import {
   skills,
   goals,
   sampleRepositories,
-  thumbnails,
   portrait,
-  envelopeIcon,
 } from '@assets';
 import Image from 'next/image';
 
@@ -31,7 +30,6 @@ export default async function Index() {
         Portrait={
           <Image src={portrait} alt="portrait" width={384} height={512} />
         }
-        ButtonIcon={<Image src={envelopeIcon} alt="" width={24} height={24} />}
       />
       <Section title={'My skills'} elements={skills} />
       <Section title={'My closest goals'} elements={goals} />
@@ -48,7 +46,7 @@ export default async function Index() {
         }))}
       />
       <Footer note={FOOTER_NOTE} address={ADDRESS}>
-        {thumbnails.map((thumbnail) => (
+        {footerThumbnails.map((thumbnail) => (
           <Thumbnail key={thumbnail.id} {...thumbnail} />
         ))}
       </Footer>

@@ -1,18 +1,17 @@
-import GithubThumbnail from "../icons/githubThumbnail.svg";
-import LinkedinThumbnail from "../icons/linkedinThumbnail.svg";
-import CodepenThumbnail from "../icons/codepenThumbnail.svg";
-import FacebookThumbnail from "../icons/facebookThumbnail.svg";
-import InstagramThumbnail from "../icons/instagramThumbnail.svg";
-
 import {
+    GithubThumbnail,
+    LinkedInThumbnail,
+    CodepenThumbnail,
+    FacebookThumbnail,
+    InstagramThumbnail,
     GITHUB_ADDRESS,
     LINKEDIN_ADDRESS,
     CODEPEN_ADDRESS,
     FACEBOOK_ADDRESS,
     INSTAGRAM_ADDRESS,
-} from "./adresses";
+} from "@assets";
 
-export const thumbnails = [
+export const footerThumbnails = [
     {
         id: 1,
         icon: GithubThumbnail,
@@ -20,7 +19,7 @@ export const thumbnails = [
     },
     {
         id: 2,
-        icon: LinkedinThumbnail,
+        icon: LinkedInThumbnail,
         url: LINKEDIN_ADDRESS,
     },
     {

@@ -7,6 +7,7 @@ import {
   Header,
   ThemeSwitcher,
   Thumbnail,
+  footerThumbnails,
 } from '@ui';
 
 import {
@@ -17,9 +18,7 @@ import {
   skills,
   goals,
   sampleRepositories,
-  thumbnails,
   portrait,
-  envelopeIcon,
 } from '@assets';
 import { localStorageService } from '@services';
 import { AppState, Theme } from '@types';
@@ -59,7 +58,6 @@ export const App = () => {
         Portrait={
           <img className="min-w-32 w-1/2 md:w-96" src={portrait} alt="portrait" />
         }
-        ButtonIcon={<img src={envelopeIcon} alt="" />}
       />
       <Section title={'My skills'} elements={skills} />
       <Section title={'My closest goals'} elements={goals} />
@@ -76,7 +74,7 @@ export const App = () => {
         }))}
       />
       <Footer note={FOOTER_NOTE} address={ADDRESS}>
-        {thumbnails.map((thumbnail) => (
+        {footerThumbnails.map((thumbnail) => (
           <Thumbnail key={thumbnail.id} {...thumbnail} />
         ))}
       </Footer>
