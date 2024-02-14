@@ -27,7 +27,7 @@ export const ThemeSwitcher = ({
               isDarkTheme && 'translate-x-8'
             )}
           >
-            <div className={clsx(isDarkTheme && 'invert')}>
+            <div className={clsx(isDarkTheme ? 'text-white' : 'text-gray-900')}>
               <SunIcon />
             </div>
           </div>

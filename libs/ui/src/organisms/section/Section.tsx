@@ -13,7 +13,7 @@ export const Section = ({ title, elements }: SectionProps) => (
     <ul className="text-lg sm:text-2xl md:text-3xl font-black m-0 grid grid-cols-2">
       {elements.map((element) => (
         <li className="mb-2 text-lg font-normal flex" key={element}>
-          <div className="w-1 mr-2 sm:w-[6px] md:w-2 md:mr-3 lg:w-[10px] lg:mr-4 flex items-center">
+          <div className="w-1 mr-2 sm:w-[6px] md:w-2 md:mr-3 lg:w-[10px] lg:mr-4 flex items-center text-blue-800 dark:text-blue-600">
             <ListStyleCircle />
           </div>
           {element}
