@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 
-import SunIcon from './sun.svg';
+import { SunIcon } from '@assets';
 
 interface ThemeSwitcherProps {
   isDarkTheme: boolean;
@@ -27,7 +27,9 @@ export const ThemeSwitcher = ({
               isDarkTheme && 'translate-x-8'
             )}
           >
-            <img className={clsx(isDarkTheme && 'invert')} src={SunIcon} alt="" />
+            <div className={clsx(isDarkTheme && 'invert')}>
+              <SunIcon />
+            </div>
           </div>
         </div>
       </button>

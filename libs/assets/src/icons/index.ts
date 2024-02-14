@@ -13,4 +13,5 @@ export { LinkedInThumbnail } from './LinkedInThumbnail';
 export { CodepenThumbnail } from './CodepenThumbnail';
 export { FacebookThumbnail } from './FacebookThumbnail';
 export { InstagramThumbnail } from './InstagramThumbnail';
+export { SunIcon } from './SunIcon';
 

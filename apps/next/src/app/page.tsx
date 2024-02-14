@@ -1,5 +1,4 @@
 import {
-  // ThemeSwitcher,
   Header,
   Section,
   Gallery,
@@ -19,11 +18,12 @@ import {
   portrait,
 } from '@assets';
 import Image from 'next/image';
+import { NextThemeSwitcher } from './NextThemeSwitcher';
 
 export default async function Index() {
   return (
     <div className="h-full py-12 px-6 max-w-5xl my-0 mx-auto bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-      {/* <ThemeSwitcher isDarkTheme={true} toggleDarkTheme={() => console.log('theme-switch')} /> */}
+      <NextThemeSwitcher />
       <Header
         name={AUTHOR_NAME}
         description={AUTHOR_DESCRIPTION}
