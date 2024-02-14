@@ -10,7 +10,7 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "outputPath": "dist/apps/frontend"
+        "outputPath": "dist/apps/spa"
       },
       "configurations": {
         "development": {
@@ -25,16 +25,16 @@
       "executor": "@nx/vite:dev-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend:build",
-        "proxyConfig": "apps/frontend/proxy.conf.json"
+        "buildTarget": "spa:build",
+        "proxyConfig": "apps/spa/proxy.conf.json"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend:build:development",
+          "buildTarget": "spa:build:development",
           "hmr": true
         },
         "production": {
-          "buildTarget": "frontend:build:production",
+          "buildTarget": "spa:build:production",
           "hmr": false
         }
       }
@@ -43,22 +43,22 @@
       "executor": "@nx/vite:preview-server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "frontend:build"
+        "buildTarget": "spa:build"
       },
       "configurations": {
         "development": {
-          "buildTarget": "frontend:build:development"
+          "buildTarget": "spa:build:development"
         },
         "production": {
-          "buildTarget": "frontend:build:production"
+          "buildTarget": "spa:build:production"
         }
       }
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/frontend"],
+      "outputs": ["coverage/apps/spa"],
       "options": {
-        "jestConfig": "apps/frontend/jest.config.ts",
+        "jestConfig": "apps/spa/jest.config.ts",
         "passWithNoTests": true
       },
       "configurations": {
@@ -72,20 +72,20 @@
       "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/frontend/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/spa/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "serve-static": {
       "executor": "@nx/web:file-server",
       "options": {
-        "buildTarget": "frontend:build"
+        "buildTarget": "spa:build"
       }
     },
     "storybook": {
       "executor": "@nx/storybook:storybook",
       "options": {
         "port": 4400,
-        "configDir": "apps/frontend/.storybook"
+        "configDir": "apps/spa/.storybook"
       },
       "configurations": {
         "ci": {
@@ -97,8 +97,8 @@
       "executor": "@nx/storybook:build",
       "outputs": ["{options.outputDir}"],
       "options": {
-        "outputDir": "dist/storybook/frontend",
-        "configDir": "apps/frontend/.storybook"
+        "outputDir": "dist/storybook/spa",
+        "configDir": "apps/spa/.storybook"
       },
       "configurations": {
         "ci": {
