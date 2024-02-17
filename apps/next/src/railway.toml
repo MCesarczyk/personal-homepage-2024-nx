@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npx nx run next:build:production"
+# watchPatterns = ["/backend"]
+
+[deploy]
+startCommand = "npx nx run next:serve:production"
+restartPolicyType = "ON_FAILURE"
