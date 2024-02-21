@@ -3,6 +3,18 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/spa/src",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "browserTarget": "spa:serve"
+      },
+      "configurations": {
+        "production": {
+          "browserTarget": "spa:serve:production --host 0.0.0.0"
+        }
+      }
+    }
+  },
   "tags": []
 }
