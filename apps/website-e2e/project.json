@@ -1,13 +1,13 @@
 {
   "name": "website-e2e",
-  "$schema": "../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "website-e2e/src",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/website-e2e/src",
   "targets": {
     "e2e": {
       "executor": "@nx/playwright:playwright",
-      "outputs": ["{workspaceRoot}/dist/.playwright/website-e2e"],
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/website-e2e"],
       "options": {
-        "config": "website-e2e/playwright.config.ts"
+        "config": "apps/website-e2e/playwright.config.ts"
       }
     },
     "lint": {
