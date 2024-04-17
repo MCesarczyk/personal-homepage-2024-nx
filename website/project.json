@@ -1,0 +1,57 @@
+{
+  "name": "website",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "website",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/website"
+      },
+      "configurations": {
+        "development": {
+          "outputPath": "website"
+        },
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nx/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "website:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "website:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "website:build:production",
+          "dev": false
+        }
+      }
+    },
+    "export": {
+      "executor": "@nx/next:export",
+      "options": {
+        "buildTarget": "website:build:production"
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "website/jest.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": []
+}
