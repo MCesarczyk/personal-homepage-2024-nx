@@ -1,7 +1,6 @@
 import { GitHubLogo } from "./GitHubLogo";
 import { type Repo } from "./types";
-import { ErrorMessage, Tile } from "../../molecules";
-import { Spinner } from "../../atoms";
+import { ErrorMessage, Tile, Spinner } from "../../molecules";
 
 interface GalleryProps {
   title: string;

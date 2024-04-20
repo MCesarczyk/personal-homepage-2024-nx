@@ -1,5 +1,3 @@
-"use client";
-
 import type { Meta, StoryFn } from "@storybook/react";
 import { type ComponentProps } from "react";
 

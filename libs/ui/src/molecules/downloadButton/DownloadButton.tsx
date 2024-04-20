@@ -1,7 +1,5 @@
-"use client";
-
 import { saveFileFromUrl } from "./saveFileFromUrlHelper";
-import { DownloadIcon } from "../../../assets";
+import { DownloadIcon } from "./DownloadIcon";
 import { Button } from "../../atoms/button";
 
 interface DownloadButtonProps {

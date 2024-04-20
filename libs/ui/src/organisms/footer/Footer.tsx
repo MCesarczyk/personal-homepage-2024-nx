@@ -1,7 +1,7 @@
 import { type FooterThumbnail } from "../../organisms/footer/types";
 import { DownloadButton } from "../../molecules";
 import { Caption, Thumbnail } from "../../atoms";
-import { ArrowUpIcon } from "../../../assets";
+import { ArrowUpIcon } from "../../assets";
 
 interface FooterProps {
   address: string;

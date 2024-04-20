@@ -2,7 +2,6 @@ import { type ComponentProps } from "react";
 import type { Meta, StoryFn } from "@storybook/react";
 
 import { Card } from "./Card";
-import { Container } from "../../atoms/Container";
 
 const meta: Meta<typeof Card> = {
   component: Card,
@@ -19,9 +18,7 @@ const meta: Meta<typeof Card> = {
 export default meta;
 
 const Template: StoryFn<ComponentProps<typeof Card>> = (args) => (
-  <Container>
     <Card {...args} />
-  </Container>
 );
 
 export const _Card: StoryFn<ComponentProps<typeof Card>> = Template.bind({});

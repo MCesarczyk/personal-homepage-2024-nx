@@ -3,7 +3,6 @@ import type { Meta, StoryFn } from "@storybook/react";
 
 import { Tile } from "./Tile";
 import sample from "./sample.avif";
-import { Container } from "../../atoms/Container";
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
@@ -18,9 +17,7 @@ const meta: Meta<typeof Tile> = {
 export default meta;
 
 const Template: StoryFn<ComponentProps<typeof Tile>> = (args) => (
-  <Container>
     <Tile {...args} />
-  </Container>
 );
 
 export const _Tile: StoryFn<ComponentProps<typeof Tile>> = Template.bind({});

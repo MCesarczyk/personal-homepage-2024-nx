@@ -1,8 +1,7 @@
-import { MoonIcon } from "../../../assets/icons/MoonIcon";
-import { SunIcon } from "../../../assets/icons/SunIcon";
+import { MoonIcon } from "./MoonIcon";
+import { SunIcon } from "./SunIcon";
 
 interface ThemeSwitcherProps {
-  isDarkTheme: boolean;
   toggleDarkTheme: () => void;
 }
 

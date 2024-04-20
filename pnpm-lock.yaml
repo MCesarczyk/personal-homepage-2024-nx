@@ -177,6 +177,9 @@ importers:
       sass:
         specifier: 1.62.1
         version: 1.62.1
+      storybook-tailwind-dark-mode:
+        specifier: ^1.0.22
+        version: 1.0.22(@storybook/addons@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/api@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@7.6.17(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/core-events@7.6.17)(@storybook/theming@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       tailwindcss:
         specifier: 3.2.7
         version: 3.2.7(postcss@8.4.21)(ts-node@10.9.1(@swc/core@1.3.107(@swc/helpers@0.5.2))(@types/node@18.16.9)(typescript@5.3.3))
@@ -2155,6 +2158,12 @@ packages:
 
   '@storybook/addon-viewport@7.6.17':
     resolution: {integrity: sha512-sA0QCcf4QAMixWvn8uvRYPfkKCSl6JajJaAspoPqXSxHEpK7uwOlpg3kqFU5XJJPXD0X957M+ONgNvBzYqSpEw==}
+
+  '@storybook/addons@7.6.17':
+    resolution: {integrity: sha512-Ok18Y698Ccyg++MoUNJNHY0cXUvo8ETFIRLJk1g9ElJ70j6kPgNnzW2pAtZkBNmswHtofZ7pT156cj96k/LgfA==}
+
+  '@storybook/api@7.6.17':
+    resolution: {integrity: sha512-l92PI+5XL4zB/o4IBWFCKQWTXvPg9hR45DCJqlPHrLZStiR6Xj1mbrtOjUlgIOH+nYb/SZFZqO53hhrs7X4Nvg==}
 
   '@storybook/blocks@7.6.17':
     resolution: {integrity: sha512-PsNVoe0bX1mMn4Kk3nbKZ0ItDZZ0YJnYAFJ6toAbsyBAbgzg1sce88sQinzvbn58/RT9MPKeWMPB45ZS7ggiNg==}
@@ -6662,6 +6671,22 @@ packages:
   store2@2.14.3:
     resolution: {integrity: sha512-4QcZ+yx7nzEFiV4BMLnr/pRa5HYzNITX2ri0Zh6sT9EyQHbBHacC6YigllUPU9X3D0f/22QCgfokpKs52YRrUg==}
 
+  storybook-tailwind-dark-mode@1.0.22:
+    resolution: {integrity: sha512-I0HSVCuvo3OkaGDnCjLM7V1OYmQccrUCAGZ5ZaJfl9s3e93WA6DKFpQRbuoSidci+PTy+KvgrINgE08rA16bWA==}
+    peerDependencies:
+      '@storybook/addons': ^7.0.0
+      '@storybook/api': ^7.0.0
+      '@storybook/components': ^7.0.0
+      '@storybook/core-events': ^7.0.0
+      '@storybook/theming': ^7.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+
   stream-browserify@3.0.0:
     resolution: {integrity: sha512-H73RAHsVBapbim0tU2JwwOiXUj+fikfiaoYAKHF3VJfA0pe2BCzkhAHBlLG6REzE+2WNZcxOXjK7lkso+9euLA==}
 
@@ -9997,6 +10022,23 @@ snapshots:
   '@storybook/addon-viewport@7.6.17':
     dependencies:
       memoizerific: 1.11.3
+
+  '@storybook/addons@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/manager-api': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/preview-api': 7.6.17
+      '@storybook/types': 7.6.17
+    transitivePeerDependencies:
+      - react
+      - react-dom
+
+  '@storybook/api@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+    dependencies:
+      '@storybook/client-logger': 7.6.17
+      '@storybook/manager-api': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    transitivePeerDependencies:
+      - react
+      - react-dom
 
   '@storybook/blocks@7.6.17(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
@@ -15814,6 +15856,17 @@ snapshots:
       internal-slot: 1.0.7
 
   store2@2.14.3: {}
+
+  storybook-tailwind-dark-mode@1.0.22(@storybook/addons@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/api@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@7.6.17(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/core-events@7.6.17)(@storybook/theming@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
+    dependencies:
+      '@storybook/addons': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/api': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/components': 7.6.17(@types/react-dom@18.2.14)(@types/react@18.2.33)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/core-events': 7.6.17
+      '@storybook/theming': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+    optionalDependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
 
   stream-browserify@3.0.0:
     dependencies:

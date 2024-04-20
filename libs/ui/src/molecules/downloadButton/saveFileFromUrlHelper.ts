@@ -1,5 +1,3 @@
-"use client";
-
 import save from "save-file";
 
 export const saveFileFromUrl = async (url: string, filename: string) => {

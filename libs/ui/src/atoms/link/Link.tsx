@@ -15,7 +15,7 @@ interface LinkProps {
   current?: boolean;
 }
 
-export const Link = ({ variant, children, href, current }: ComponentProps<"a"> & LinkProps) => (
+export const Link = ({ variant = 'PRIMARY', children, href, current }: ComponentProps<"a"> & LinkProps) => (
   <a
     {...{ href }}
     className={clsx(
