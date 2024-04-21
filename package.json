@@ -2,7 +2,16 @@
   "name": "@ph24/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "migrate:db": "npx prisma migrate dev",
+    "generate:types": "pnpm nx run prisma-schema:generate-types",
+    "postinstall": "pnpm generate:types",
+    "build": "pnpm generate:types && pnpm nx run website:build:production",
+    "build:prod": "pnpm migrate:db && pnpm generate:types && pnpm nx affected -t build -p backend"
+  },
+  "prisma": {
+    "schema": "libs/prisma-schema/prisma/schema.prisma"
+  },
   "private": true,
   "dependencies": {
     "@nestjs/common": "^10.0.2",
