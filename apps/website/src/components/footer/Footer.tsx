@@ -1,6 +1,7 @@
-import { Caption, DownloadButton, Thumbnail } from "@personal-homepage-2024-nx/ui";
-import { type FooterThumbnail } from "./types";
-import { ArrowUpIcon } from "./icons/ArrowUpIcon";
+import { Caption, Thumbnail } from '@personal-homepage-2024-nx/ui';
+import { type FooterThumbnail } from './types';
+import { ArrowUpIcon } from '../../assets/icons/ArrowUpIcon';
+import { ResumeDownloadButton } from './ResumeDownloadButton';
 
 interface FooterProps {
   address: string;
@@ -9,7 +10,12 @@ interface FooterProps {
   footerThumbnails: FooterThumbnail[];
 }
 
-export const Footer = ({ address, cvFileLocation, cvFileName, footerThumbnails }: FooterProps) => (
+export const Footer = ({
+  address,
+  cvFileLocation,
+  cvFileName,
+  footerThumbnails,
+}: FooterProps) => (
   <div className="w-full">
     <div className="text-lg sm:text-2xl md:text-3xl lg:text-4xl">
       <Caption>CONTACT:</Caption>
@@ -23,7 +29,11 @@ export const Footer = ({ address, cvFileLocation, cvFileName, footerThumbnails }
     </div>
     <div className="flex flex-col md:flex-row items-center">
       <div className="m-6 w-full md:w-auto shrink-0">
-        <DownloadButton fileLocation={cvFileLocation} fileName={cvFileName} buttonText="Download CV" />
+        <ResumeDownloadButton
+          fileLocation={cvFileLocation}
+          fileName={cvFileName}
+          buttonText="Download CV"
+        />
       </div>
       <div className="flex w-full">
         {footerThumbnails.map((thumbnail) => (

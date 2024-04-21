@@ -1,5 +1,4 @@
-import { GithubThumbnail, LinkedInThumbnail } from "@personal-homepage-2024-nx/ui";
-import { GITHUB_ADDRESS, LINKEDIN_ADDRESS } from ".";
+import { GithubThumbnail, LinkedInThumbnail, GITHUB_ADDRESS, LINKEDIN_ADDRESS } from "../../assets";
 
 export const footerThumbnails = [
   {

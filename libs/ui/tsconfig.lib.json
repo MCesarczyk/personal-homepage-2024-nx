@@ -23,5 +23,18 @@
     "**/*.stories.jsx",
     "**/*.stories.tsx"
   ],
-  "include": ["src/**/*.js", "src/**/*.jsx", "src/**/*.ts", "src/**/*.tsx", "src/atoms/themeSwitcher/MoonIcon.tsx", "src/atoms/themeSwitcher/SunIcon.tsx", "../../apps/website/src/components/footer/icons/CodepenThumbnail.tsx", "../../apps/website/src/components/footer/icons/FacebookThumbnail.tsx", "../../apps/website/src/components/footer/icons/GithubThumbnail.tsx", "../../apps/website/src/components/footer/icons/InstagramThumbnail.tsx", "../../apps/website/src/components/footer/icons/LinkedInThumbnail.tsx", "../../apps/website/src/components/footer/icons/ArrowUpIcon.tsx"]
+  "include": [
+    "src/**/*.js",
+    "src/**/*.jsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/atoms/themeSwitcher/MoonIcon.tsx",
+    "src/atoms/themeSwitcher/SunIcon.tsx",
+    "../../apps/website/src/assets/icons/CodepenThumbnail.tsx",
+    "../../apps/website/src/assets/icons/FacebookThumbnail.tsx",
+    "../../apps/website/src/assets/icons/GithubThumbnail.tsx",
+    "../../apps/website/src/assets/icons/InstagramThumbnail.tsx",
+    "../../apps/website/src/assets/icons/LinkedInThumbnail.tsx",
+    "../../apps/website/src/assets/icons/ArrowUpIcon.tsx"
+  ]
 }

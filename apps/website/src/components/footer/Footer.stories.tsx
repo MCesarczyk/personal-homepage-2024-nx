@@ -1,18 +1,16 @@
-import type { Meta, StoryFn } from "@storybook/react";
-import { type ComponentProps } from "react";
+import type { Meta, StoryFn } from '@storybook/react';
+import { type ComponentProps } from 'react';
 
-import { Footer } from "./Footer";
-import { footerThumbnails } from "./footerThumbnailsSample";
+import { Footer } from './Footer';
+import { footerThumbnails } from './footerThumbnailsSample';
 
 const meta: Meta<typeof Footer> = {
   component: Footer,
-  title: "Components/Footer",
-  tags: ["autodocs"],
+  title: 'Components/Footer',
+  tags: ['autodocs'],
   argTypes: {
-    address: { control: "text", description: "Address" },
-    cvFileLocation: { control: "text", description: "CV file location" },
-    cvFileName: { control: "text", description: "CV file name" },
-    footerThumbnails: { control: "disabled", description: "Footer thumbnails" },
+    address: { control: 'text', description: 'Address' },
+    footerThumbnails: { control: 'disabled', description: 'Footer thumbnails' },
   },
 };
 export default meta;
@@ -25,13 +23,8 @@ const Template: StoryFn<ComponentProps<typeof Footer>> = (args) => (
 
 export const _Footer = Template.bind({});
 _Footer.args = {
-  address: "lorem.ipsum@dolor.sit",
-  cvFileLocation: "/DummyCV.pdf",
-  cvFileName: "John Doe CV.pdf",
+  address: 'lorem.ipsum@dolor.sit',
+  cvFileLocation: '/DummyCV.pdf',
+  cvFileName: 'John Doe CV.pdf',
   footerThumbnails: footerThumbnails,
-};
-_Footer.parameters = {
-  backgrounds: {
-    default: "light",
-  },
 };
