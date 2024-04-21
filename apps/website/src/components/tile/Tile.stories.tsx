@@ -6,7 +6,7 @@ import sample from "./sample.avif";
 
 const meta: Meta<typeof Tile> = {
   component: Tile,
-  title: "Molecules/Tile",
+  title: "Components/Tile",
   tags: ["autodocs"],
   argTypes: {
     title: { control: "text", description: "Title" },

@@ -1,7 +1,10 @@
+import Image, { StaticImageData } from "next/image";
+import { imageLoader } from "./loader";
+
 interface TileImage {
   id: number;
   alt: string;
-  url: string;
+  url: string | StaticImageData;
 }
 
 interface TileUrl {
@@ -23,12 +26,12 @@ export const Tile = ({ title, images, description, links }: TileProps) => (
     <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold text-blue-800 dark:text-blue-600">{title}</h3>
     {images.map((image) => (
       <div key={image.id} className="w-full aspect-video flex items-center">
-        <img
+        <Image
           width={480}
           height={320}
           key={image.id}
           className="w-full h-5/6 rounded object-contain"
-          placeholder="blur"
+          loader={imageLoader}
           src={image.url}
           alt={image.alt}
         />

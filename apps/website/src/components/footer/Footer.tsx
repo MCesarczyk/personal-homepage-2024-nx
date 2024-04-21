@@ -1,7 +1,6 @@
-import { type FooterThumbnail } from "../../organisms/footer/types";
-import { DownloadButton } from "../../molecules";
-import { Caption, Thumbnail } from "../../atoms";
-import { ArrowUpIcon } from "../../assets";
+import { Caption, DownloadButton, Thumbnail } from "@personal-homepage-2024-nx/ui";
+import { type FooterThumbnail } from "./types";
+import { ArrowUpIcon } from "./icons/ArrowUpIcon";
 
 interface FooterProps {
   address: string;

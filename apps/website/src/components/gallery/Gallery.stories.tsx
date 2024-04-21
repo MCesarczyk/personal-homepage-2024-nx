@@ -6,7 +6,7 @@ import { sampleRepositories } from "./fixtures";
 
 const meta: Meta<typeof Gallery> = {
   component: Gallery,
-  title: "Organisms/Gallery",
+  title: "Components/Gallery",
   tags: ["autodocs"],
   argTypes: {
     title: { control: "text", description: "Title" },

@@ -1,7 +1,7 @@
 import { type ReactNode } from "react";
 
 import { EnvelopeIcon } from "./EnvelopeIcon";
-import { Caption, Link, PageTitle } from "../../atoms";
+import { Caption, Link, PageTitle } from "@personal-homepage-2024-nx/ui";
 
 interface HeaderProps {
   name: string;

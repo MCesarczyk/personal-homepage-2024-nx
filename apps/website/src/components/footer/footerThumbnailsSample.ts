@@ -1,4 +1,4 @@
-import { FacebookThumbnail, InstagramThumbnail } from "../../assets";
+import { FacebookThumbnail, InstagramThumbnail } from "./icons";
 
 export const footerThumbnails = [
   {

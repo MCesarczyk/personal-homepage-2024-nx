@@ -1,6 +1,7 @@
+import { ErrorMessage, Spinner } from "@personal-homepage-2024-nx/ui";
 import { GitHubLogo } from "./GitHubLogo";
 import { type Repo } from "./types";
-import { ErrorMessage, Tile, Spinner } from "../../molecules";
+import { Tile } from "../tile";
 
 interface GalleryProps {
   title: string;

@@ -1,8 +1,16 @@
 "use client";
 
 import { useState, type ChangeEvent, useEffect } from "react";
-import { type SkillDto, type SkillState } from "@/app/admin/skills/types";
 import { Select, Button, Input } from "../../atoms";
+
+export type SkillState = "PLANNED" | "RUNNING" | "COMPLETED";
+
+export interface SkillDto {
+  id: string;
+  content: string;
+  state: SkillState;
+  userId: string;
+}
 
 interface CardProps {
   id: string;

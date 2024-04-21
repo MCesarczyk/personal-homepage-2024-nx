@@ -1,8 +1,8 @@
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {
-  stories: ['../components/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
-  addons: ['@storybook/addon-essentials'],
+  stories: ['../src/components/**/*.stories.@(js|jsx|ts|tsx|mdx)'],
+  addons: ['@storybook/addon-essentials','storybook-tailwind-dark-mode'],
   framework: {
     name: '@storybook/nextjs',
     options: {},

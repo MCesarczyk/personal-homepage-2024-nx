@@ -2,11 +2,11 @@ import type { Meta, StoryFn } from "@storybook/react";
 import { type ComponentProps } from "react";
 
 import { Footer } from "./Footer";
-import { footerThumbnails } from "../../organisms/footer/footerThumbnailsSample";
+import { footerThumbnails } from "./footerThumbnailsSample";
 
 const meta: Meta<typeof Footer> = {
   component: Footer,
-  title: "Organisms/Footer",
+  title: "Components/Footer",
   tags: ["autodocs"],
   argTypes: {
     address: { control: "text", description: "Address" },

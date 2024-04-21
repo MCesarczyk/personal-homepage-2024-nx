@@ -5,7 +5,7 @@ import { Section } from "./Section";
 
 const meta: Meta<typeof Section> = {
   component: Section,
-  title: "Organisms/Section",
+  title: "Components/Section",
   tags: ["autodocs"],
   argTypes: {
     title: { control: "text", description: "Section title" },
