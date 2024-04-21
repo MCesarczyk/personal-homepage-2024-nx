@@ -1,5 +1,5 @@
 {
-  "name": "@personal-homepage-2024-nx/source",
+  "name": "@ph24/source",
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {},
@@ -40,6 +40,7 @@
     "@nx/webpack": "17.3.2",
     "@nx/workspace": "17.3.2",
     "@playwright/test": "^1.36.0",
+    "@prisma/client": "^5.12.1",
     "@storybook/addon-essentials": "7.6.17",
     "@storybook/core-server": "7.6.17",
     "@storybook/nextjs": "7.6.17",
@@ -75,6 +76,7 @@
     "nx": "17.3.2",
     "postcss": "8.4.21",
     "prettier": "^2.6.2",
+    "prisma": "^5.12.1",
     "sass": "1.62.1",
     "storybook-tailwind-dark-mode": "^1.0.22",
     "tailwindcss": "3.2.7",

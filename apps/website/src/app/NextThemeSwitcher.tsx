@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 
 import { useTheme } from 'next-themes';
-import { ThemeSwitcher } from '@personal-homepage-2024-nx/ui';
+import { ThemeSwitcher } from '@ph24/ui';
 
 export type Theme = 'light' | 'dark';
 

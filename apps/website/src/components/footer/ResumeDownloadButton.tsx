@@ -1,6 +1,6 @@
 'use client';
 
-import { DownloadButton } from '@personal-homepage-2024-nx/ui';
+import { DownloadButton } from '@ph24/ui';
 import { ComponentProps } from 'react';
 
 export const ResumeDownloadButton = (
