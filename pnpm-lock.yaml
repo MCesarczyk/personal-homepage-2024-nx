@@ -38,6 +38,12 @@ dependencies:
   express:
     specifier: ^4.19.2
     version: 4.19.2
+  js-cookie:
+    specifier: ^3.0.5
+    version: 3.0.5
+  jsonwebtoken:
+    specifier: ^9.0.2
+    version: 9.0.2
   next:
     specifier: 14.0.4
     version: 14.0.4(@babel/core@7.24.4)(react-dom@18.2.0)(react@18.2.0)(sass@1.62.1)
@@ -62,6 +68,9 @@ dependencies:
   tslib:
     specifier: ^2.3.0
     version: 2.6.2
+  utils-agnostic:
+    specifier: ^1.0.0
+    version: 1.0.0
 
 devDependencies:
   '@babel/core':
@@ -163,6 +172,12 @@ devDependencies:
   '@types/jest':
     specifier: ^29.4.0
     version: 29.5.12
+  '@types/js-cookie':
+    specifier: ^3.0.6
+    version: 3.0.6
+  '@types/jsonwebtoken':
+    specifier: ^9.0.6
+    version: 9.0.6
   '@types/node':
     specifier: 18.16.9
     version: 18.16.9
@@ -6211,6 +6226,10 @@ packages:
       pretty-format: 29.7.0
     dev: true
 
+  /@types/js-cookie@3.0.6:
+    resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
+    dev: true
+
   /@types/jsdom@20.0.1:
     resolution: {integrity: sha512-d0r18sZPmMQr1eG35u12FZfhIXNrnsPU/g5wvRKCUf/tOGilKKwYMYGqh33BNR6ba+2gkHw1EUiHoN3mn7E5IQ==}
     dependencies:
@@ -6232,6 +6251,12 @@ packages:
     dependencies:
       '@types/node': 18.16.9
     dev: false
+
+  /@types/jsonwebtoken@9.0.6:
+    resolution: {integrity: sha512-/5hndP5dCjloafCXns6SZyESp3Ldq7YjH3zwzwczYnjxIT0Fqzk5ROSYVGfFyczIue7IUEj8hkvLbPoLQ18vQw==}
+    dependencies:
+      '@types/node': 18.16.9
+    dev: true
 
   /@types/lodash@4.17.0:
     resolution: {integrity: sha512-t7dhREVv6dbNj0q17X12j7yDG4bD/DHYX7o5/DbDxobP0HnGPgpRz2Ej77aL7TZT3DSw13fqUTj8J4mMnqa7WA==}
@@ -11859,6 +11884,11 @@ packages:
     resolution: {integrity: sha512-8wb9Yw966OSxApiCt0K3yNJL8pnNeIv+OEq2YMidz4FKP6nonSRoOXc80iXY4JaN2FC11B9qsNmDsm+ZOfMROA==}
     dev: true
 
+  /js-cookie@3.0.5:
+    resolution: {integrity: sha512-cEiJEAEoIbWfCZYKWhVwFuvPX1gETRYPw6LlaTKoxD3s2AkXzkCjnp6h0V77ozyqj0jakteJ4YqDJT830+lVGw==}
+    engines: {node: '>=14'}
+    dev: false
+
   /js-tokens@4.0.0:
     resolution: {integrity: sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==}
 
@@ -16276,6 +16306,10 @@ packages:
   /utila@0.4.0:
     resolution: {integrity: sha512-Z0DbgELS9/L/75wZbro8xAnT50pBVFQZ+hUEueGDU5FN51YSCYM+jdxsfCiHjwNP/4LCDD0i/graKpeBnOXKRA==}
     dev: true
+
+  /utils-agnostic@1.0.0:
+    resolution: {integrity: sha512-bHA9vgRodAge9vRvapRrX9uaivJORJMR+sq+X+N6odzKe28T3dxf7AZveymx9TNuHzqduIegzU6coON/8d4obA==}
+    dev: false
 
   /utils-merge@1.0.1:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}

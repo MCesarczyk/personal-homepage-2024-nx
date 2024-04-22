@@ -10,10 +10,9 @@ async function bootstrap() {
   app.setGlobalPrefix('api/v1', { exclude: ['/'] });
   app.enableCors({
     origin: [
-      'http://localhost:4000',
-      'https://www.cesarczyk.dev',
-      'https://cesarczyk.dev',
-      'https://home.cesarczyk.dev',
+      process.env.FRONTEND_URL,
+      process.env.ADMIN_URL,
+      process.env.PUBLIC_URL
     ],
     credentials: true,
   });
@@ -22,10 +21,10 @@ async function bootstrap() {
   const developmentOptions = new DocumentBuilder()
     .setTitle('Personal Homepage API - development')
     .setDescription(
-      `Backend for Personal Homepage website. Available on: http://localhost:${process.env.PORT}/. This API is used to manage the content of the homepage.`,
+      `Backend for Personal Homepage website. Available on: ${process.env.DEVELOPMENT_URL}. This API is used to manage the content of the homepage.`,
     )
     .setVersion('1.0')
-    .addServer(`http://localhost:${process.env.PORT}/`, 'Development')
+    .addServer(`${process.env.DEVELOPMENT_URL}`, 'Development')
     .addServer(`${process.env.PRODUCTION_URL}`, 'Production')
     .addBearerAuth()
     .build();
@@ -33,7 +32,7 @@ async function bootstrap() {
   const productionOptions = new DocumentBuilder()
     .setTitle('Personal Homepage API - production')
     .setDescription(
-      `Backend for Personal Homepage website. Available on: ${process.env.PUBLIC_URL || process.env.PRODUCTION_URL}. This API is used to manage the content of the homepage.`,
+      `Backend for Personal Homepage website. Available on: ${process.env.PRODUCTION_URL}. This API is used to manage the content of the homepage.`,
     )
     .setVersion('1.0')
     .addServer(`${process.env.PRODUCTION_URL}`, 'Production')

@@ -25,6 +25,8 @@
     "clsx": "^2.1.0",
     "cookie-parser": "^1.4.6",
     "express": "^4.19.2",
+    "js-cookie": "^3.0.5",
+    "jsonwebtoken": "^9.0.2",
     "next": "14.0.4",
     "next-themes": "^0.3.0",
     "react": "18.2.0",
@@ -32,7 +34,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "save-file": "^2.3.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.0",
+    "utils-agnostic": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.5",
@@ -68,6 +71,8 @@
     "@types/bcrypt": "^5.0.2",
     "@types/cookie-parser": "^1.4.7",
     "@types/jest": "^29.4.0",
+    "@types/js-cookie": "^3.0.6",
+    "@types/jsonwebtoken": "^9.0.6",
     "@types/node": "18.16.9",
     "@types/react": "18.2.33",
     "@types/react-dom": "18.2.14",
