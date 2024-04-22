@@ -10,6 +10,7 @@ import {
 } from './actions';
 import { SkillCreateForm } from './SkillCreateForm';
 import { Card } from '../../../components';
+import { notFound } from 'next/navigation';
 
 export default async function SkillsPage() {
   const accessToken = cookies().get('accessToken')?.value;
@@ -29,19 +30,19 @@ export default async function SkillsPage() {
     }
   );
 
-  const skills: SkillDto[] = (await response.json()) || [];
+  const skills: SkillDto[] = await response.json();
 
-  // return (
-  //   <div>
-  //     <pre>{JSON.stringify(skills, null, 2)}</pre>
-  //   </div>
-  // );
+  if (!skills) {
+    notFound();
+  }
+
+  const skillsSortedByState = sortArrayOfObjects(skills, 'state');
 
   return (
     <div className="py-8">
       <ul className="flex flex-col gap-4">
-        {sortArrayOfObjects(skills, 'state')
-          ?.filter(({ userId }) => userId === currentUserId)
+        {skillsSortedByState
+          .filter(({ userId }) => userId === currentUserId)
           .map(({ id, content, state }) => (
             <li key={id}>
               <Card
