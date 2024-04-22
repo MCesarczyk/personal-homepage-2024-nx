@@ -3,13 +3,13 @@ import * as jwt from 'jsonwebtoken';
 import { sortArrayOfObjects } from 'utils-agnostic';
 
 import { type SkillDto } from './types';
-import { Card } from '@ph24/ui';
 import {
   handleCreateNewSkill,
   handleDeleteSkill,
   handleEditSkill,
 } from './actions';
 import { SkillCreateForm } from './SkillCreateForm';
+import { Card } from '../../../components';
 
 export default async function SkillsPage() {
   const accessToken = cookies().get('accessToken')?.value;
@@ -30,6 +30,12 @@ export default async function SkillsPage() {
   );
 
   const skills: SkillDto[] = (await response.json()) || [];
+
+  // return (
+  //   <div>
+  //     <pre>{JSON.stringify(skills, null, 2)}</pre>
+  //   </div>
+  // );
 
   return (
     <div className="py-8">

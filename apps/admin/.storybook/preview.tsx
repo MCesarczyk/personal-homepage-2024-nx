@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Preview } from '@storybook/react';
-import { StoryBackground } from '@ph24/ui';
 import '../src/app/global.css';
+import { StoryBackground } from '@ph24/ui';
 
 const preview: Preview = {
   parameters: {
