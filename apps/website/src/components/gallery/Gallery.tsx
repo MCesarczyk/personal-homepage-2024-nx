@@ -1,12 +1,12 @@
-import { ErrorMessage, Spinner } from "@personal-homepage-2024-nx/ui";
-import { GitHubLogo } from "./GitHubLogo";
-import { type Repo } from "./types";
-import { Tile } from "../tile";
+import { ErrorMessage, Spinner } from '@ph24/ui';
+import { GitHubLogo } from './GitHubLogo';
+import { type Repo } from './types';
+import { Tile } from '../tile';
 
 interface GalleryProps {
   title: string;
   subtitle: string;
-  status: "loading" | "error" | "success";
+  status: 'loading' | 'error' | 'success';
   repos: Repo[];
 }
 
@@ -18,36 +18,40 @@ export const Gallery = ({ title, subtitle, status, repos }: GalleryProps) => {
           <GitHubLogo />
         </div>
       </div>
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black m-0">{title}</h2>
+      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black m-0">
+        {title}
+      </h2>
       <p className="text-base sm:text-xl mb-4">{subtitle}</p>
-      {status === "loading" && <Spinner message="Repositories are loading... " />}
-      {status === "error" && (
+      {status === 'loading' && (
+        <Spinner message="Repositories are loading... " />
+      )}
+      {status === 'error' && (
         <ErrorMessage
           address="lorem.ipsum@mail.co"
           errorDescription="Something bad happened..."
           errorMessage="Ooops..."
         />
       )}
-      {status === "success" && (
+      {status === 'success' && (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {repos.map((repo) => (
             <Tile
               key={repo.id}
-              title={repo.name || "n/a"}
+              title={repo.name || 'n/a'}
               images={repo.images || []}
-              description={repo.description || "n/a"}
+              description={repo.description || 'n/a'}
               links={[
                 {
                   id: 1,
-                  prefix: "demo",
-                  label: repo.codeLink.replace("https://", "") || "n/a",
-                  url: repo.codeLink || "n/a",
+                  prefix: 'demo',
+                  label: repo.codeLink.replace('https://', '') || 'n/a',
+                  url: repo.codeLink || 'n/a',
                 },
                 {
                   id: 2,
-                  prefix: "code",
-                  label: repo.demoLink.replace("https://", "") || "n/a",
-                  url: repo.demoLink || "n/a",
+                  prefix: 'code',
+                  label: repo.demoLink.replace('https://', '') || 'n/a',
+                  url: repo.demoLink || 'n/a',
                 },
               ]}
             />

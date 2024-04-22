@@ -1,4 +1,4 @@
-import { Caption, Thumbnail } from '@personal-homepage-2024-nx/ui';
+import { Caption, Thumbnail } from '@ph24/ui';
 import { type FooterThumbnail } from './types';
 import { ArrowUpIcon } from '../../assets/icons/ArrowUpIcon';
 import { ResumeDownloadButton } from './ResumeDownloadButton';
