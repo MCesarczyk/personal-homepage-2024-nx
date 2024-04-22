@@ -22,7 +22,7 @@
         "libs/prisma-client/src/index.ts"
       ],
       "@ph24/prisma-schema": [
-        "libs/prisma-schema/src/index.ts"
+        "libs/prisma-schema/schema.prisma"
       ],
       "@ph24/ui": [
         "libs/ui/src/index.ts"
