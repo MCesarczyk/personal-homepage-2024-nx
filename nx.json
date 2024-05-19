@@ -115,7 +115,6 @@
     "sharedGlobals": []
   },
   "neverConnectToCloud": true,
-  "nxCloudAccessToken": "MTYzZWEwZjktYjI5Yi00NjQ4LWJmNzAtMTRiYjE0N2NkNTgwfHJlYWQtd3JpdGU=",
   "generators": {
     "@nx/next": {
       "application": {
