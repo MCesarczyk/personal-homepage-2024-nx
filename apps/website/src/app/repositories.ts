@@ -1,8 +1,22 @@
-import { screen_1, screen_2, screen_3, screen_4 } from "../assets";
+import { screen_1, screen_2, screen_3, screen_4, screen_5 } from "../assets";
 
 export const sampleRepositories = [
   {
     id: 1,
+    title: "Furry Friend Area",
+    description: "Web shop for dog supplies",
+    html_url: "https://ffa-neon.vercel.app/",
+    homepage: "https://github.com/MCesarczyk/ffa",
+    images: [
+      {
+        id: 1,
+        alt: "Furry Friend Area Screenshot",
+        url: screen_5,
+      },
+    ],
+  },
+  {
+    id: 2,
     title: "CNC Calc React",
     description: "App calculating CNC machinig parameters",
     html_url: "https://mcesarczyk.github.io/cnc-calc-react/",
@@ -16,7 +30,7 @@ export const sampleRepositories = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "Movie Browser",
     description: "React Filmweb clone",
     html_url: "https://mcesarczyk.github.io/movie-browser/",
@@ -30,7 +44,7 @@ export const sampleRepositories = [
     ],
   },
   {
-    id: 3,
+    id: 4,
     title: "Todo List",
     description: "React Toto List app",
     html_url: "https://mcesarczyk.github.io/todo-list-react/",
@@ -44,7 +58,7 @@ export const sampleRepositories = [
     ],
   },
   {
-    id: 4,
+    id: 5,
     title: "Route Assistant",
     description: "Simple travel time and gas cost calculating app",
     html_url: "https://mcesarczyk.github.io/route-assistant/",
@@ -57,32 +71,4 @@ export const sampleRepositories = [
       },
     ],
   },
-  // {
-  //   id: 5,
-  //   title: "Color Theme Generator",
-  //   description: "Ant Design color palette generator",
-  //   html_url: "https://mcesarczyk.github.io/color-theme-generator/",
-  //   homepage: "https://github.com/MCesarczyk/color-theme-generator",
-  //   images: [
-  //     {
-  //       id: 1,
-  //       alt: "Color Theme Generator Screenshot",
-  //       url: screen_5,
-  //     },
-  //   ],
-  // },
-  // {
-  //   id: 6,
-  //   title: "Rick & Morty",
-  //   description: "Next app using popular Rick & Morty API",
-  //   html_url: "https://octopus-app-7cmpj.ondigitalocean.app/",
-  //   homepage: "https://github.com/MCesarczyk/rick-and-morty",
-  // },
-  // {
-  //   id: 7,
-  //   title: "Polygon Draftsman",
-  //   description: "Landing page with embedded Leaflet map",
-  //   html_url: "https://mcesarczyk.github.io/polygon-draftsman-mcesarczyk/",
-  //   homepage: "https://github.com/MCesarczyk/polygon-draftsman-mcesarczyk",
-  // },
 ];
