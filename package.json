@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "dev": "pnpm nx run-many --target=serve --all",
+    "storybook": "pnpm nx run-many --target=storybook --all",
     "migrate:db": "npx prisma migrate dev",
     "generate:types": "pnpm nx run prisma-schema:generate-types",
     "postinstall": "pnpm generate:types",
@@ -19,6 +21,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/platform-express": "^10.3.8",
     "@nestjs/swagger": "^7.3.1",
+    "@vercel/speed-insights": "^1.0.10",
     "axios": "^1.6.0",
     "bcrypt": "^5.1.1",
     "class-validator": "^0.14.1",
