@@ -46,7 +46,7 @@ export const sampleRepositories = [
   {
     id: 4,
     title: "Todo List",
-    description: "React Toto List app",
+    description: "React Todo List app",
     html_url: "https://mcesarczyk.github.io/todo-list-react/",
     homepage: "https://github.com/MCesarczyk/todo-list-react",
     images: [
