@@ -1,13 +1,17 @@
 import { Input, Button } from '@ph24/ui';
+import { authService } from '../auth/authService';
 
 export const LoginForm = () => {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const username = formData.get('username');
     const password = formData.get('password');
-    console.log('username:', username);
-    console.log('password:', password);
+    const response = await authService.login(
+      username as string,
+      password as string
+    );
+    console.log('response:', response);
   };
 
   return (
