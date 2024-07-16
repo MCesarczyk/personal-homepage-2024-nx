@@ -1,7 +1,15 @@
+import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@ph24/ui';
 import { authService } from '../auth/authService';
+import { ROUTES } from '../app/routes';
 
-export const LoginForm = () => {
+interface LoginFormProps {
+  setToken: (token: string) => void;
+}
+
+export const LoginForm = ({ setToken }: LoginFormProps) => {
+  const navigate = useNavigate();
+
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
@@ -11,7 +19,8 @@ export const LoginForm = () => {
       username as string,
       password as string
     );
-    console.log('response:', response);
+    setToken(response.accessToken);
+    navigate(ROUTES.DASHBOARD);
   };
 
   return (

@@ -1,9 +1,13 @@
 import { LoginForm } from '../components/loginForm';
 
-export const LoginPage = () => {
+interface LoginPageProps {
+  setToken: (token: string) => void;
+}
+
+export const LoginPage = ({ setToken }: LoginPageProps) => {
   return (
     <div className="grid place-content-center h-full">
-      <LoginForm />
+      <LoginForm {...{ setToken }} />
     </div>
   );
 };
