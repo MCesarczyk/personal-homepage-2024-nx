@@ -6,6 +6,7 @@ import { DashboardPage } from '../pages/dashboard';
 import { SkillsPage } from '../pages/skills';
 import { Navigation } from '../components/navigation';
 import { ProtectedRoute } from './protectedRoute';
+import './styles.css';
 
 export function App() {
   const [token, setToken] = useState<string | null>(null);
