@@ -1,4 +1,4 @@
-import { LoginForm } from '../components/loginForm';
+import { LoginForm } from '../features/auth/loginForm';
 
 interface LoginPageProps {
   setToken: (token: string) => void;

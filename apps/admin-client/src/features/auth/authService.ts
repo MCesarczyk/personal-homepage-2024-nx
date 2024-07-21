@@ -1,4 +1,4 @@
-import { API_PREFIX, API_URL } from "../app/apiUrl";
+import { API_PREFIX, API_URL } from "../../app/apiUrl";
 import { AUTH_URLS } from "./authUrls";
 
 export const authService = {

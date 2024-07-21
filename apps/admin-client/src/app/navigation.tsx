@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import { Link, useLocation } from 'react-router-dom';
-import { ROUTES } from '../app/routes';
+import { ROUTES } from './routes';
 
 export const Navigation = () => {
   const { pathname } = useLocation();
