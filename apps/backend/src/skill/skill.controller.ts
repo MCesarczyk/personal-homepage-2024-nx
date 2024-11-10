@@ -21,9 +21,9 @@ import { Skill } from '../skill/entities/skill.entity';
 
 @ApiBearerAuth()
 @ApiTags('skill')
-@Controller('skill')
+@Controller({ version: '1', path: 'skill' })
 export class SkillController {
-  constructor(private readonly skillService: SkillService) {}
+  constructor(private readonly skillService: SkillService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create skill' })

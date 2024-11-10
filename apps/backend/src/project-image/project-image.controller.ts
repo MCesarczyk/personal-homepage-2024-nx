@@ -16,9 +16,9 @@ import { ProjectImage } from './entities/project-image.entity';
 
 @ApiBearerAuth()
 @ApiTags('project-image')
-@Controller('project-image')
+@Controller({ version: '1', path: 'project-image' })
 export class ProjectImageController {
-  constructor(private readonly projectImageService: ProjectImageService) {}
+  constructor(private readonly projectImageService: ProjectImageService) { }
 
   @Post()
   @ApiResponse({

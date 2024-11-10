@@ -2,12 +2,21 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
+import { VersioningType } from '@nestjs/common';
 
 const port = process.env.PORT || 5000;
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.setGlobalPrefix('api/v1', { exclude: ['/'] });
+  const globalPrefix = 'api';
+
+  app.setGlobalPrefix(globalPrefix, { exclude: ['/'] });
+
+  app.enableVersioning({
+    type: VersioningType.URI,
+    prefix: 'v',
+  })
+
   app.enableCors({
     origin: [
       process.env.FRONTEND_URL,
@@ -16,6 +25,7 @@ async function bootstrap() {
     ],
     credentials: true,
   });
+
   app.use(cookieParser());
 
   const developmentOptions = new DocumentBuilder()
@@ -46,6 +56,7 @@ async function bootstrap() {
   SwaggerModule.setup('docs', app, document);
 
   await app.listen(port, '0.0.0.0');
-  console.log(`Server running on http://localhost:${port} 🚀`);
+  console.log(`Server running on ${port} 🚀`);
 }
+
 bootstrap();

@@ -12,9 +12,9 @@ import { UserData } from '../user/entities/userData.entity';
 
 @ApiBearerAuth()
 @ApiTags('user')
-@Controller('user')
+@Controller({ version: '1', path: 'user' })
 export class UserController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UserService) { }
 
   @Get('profile')
   @ApiOperation({ summary: 'Get profile' })
