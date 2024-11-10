@@ -1,57 +1,42 @@
-import { BehaviorSubject } from 'rxjs';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ISkill } from '@ph24/shared/domain';
-import { skillsFixture } from './fixtures/skills-fixture';
+import { NestDataAccessSkillService } from '@ph24/nest/data-access-skill';
 
 @Injectable()
 export class NestFeatureSkillService {
-  private skills$$ = new BehaviorSubject<ISkill[]>(skillsFixture);
+  constructor(private skillRepository: NestDataAccessSkillService) { }
 
-  create(data: Pick<ISkill, 'content' | 'state' | 'userId'>): ISkill {
-    const current = this.skills$$.value;
-
-    const newSkill: ISkill = {
-      id: `${Math.floor(Math.random() * 100000)}`,
-      ...data,
-    };
-
-    this.skills$$.next([...current, newSkill]);
-    return newSkill;
+  async create(data: Pick<ISkill, 'content' | 'state' | 'userId'>): Promise<ISkill> {
+    return await this.skillRepository.create(data);
   }
 
-  getAll(): ISkill[] {
-    return this.skills$$.value;
+  async getAll(): Promise<ISkill[]> {
+    return await this.skillRepository.findAll();
   }
 
-  getOne(id: string): ISkill {
-    const skill = this.skills$$.value.find((skill) => skill.id === id);
+  async getOne(id: string): Promise<ISkill | null> {
+    const skill = await this.skillRepository.findOne(id);
     if (!skill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
     return skill;
   }
 
-  updateOne(id: string, data: Partial<ISkill>): ISkill {
-    const current = this.skills$$.value;
-    const index = current.findIndex((skill) => skill.id === id);
-    if (index === -1) {
+  async updateOne(id: string, data: Partial<ISkill>): Promise<ISkill | null> {
+    const awaitedSkill = await this.getOne(id);
+    if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
 
-    const updatedSkill = { ...current[index], ...data };
-    current[index] = updatedSkill;
-    this.skills$$.next(current);
-    return updatedSkill;
+    return await this.skillRepository.update(id, data);
   }
 
-  deleteOne(id: string): void {
-    const current = this.skills$$.value;
-    const index = current.findIndex((skill) => skill.id === id);
-    if (index === -1) {
+  async deleteOne(id: string): Promise<ISkill | null> {
+    const awaitedSkill = await this.getOne(id);
+    if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
 
-    current.splice(index, 1);
-    this.skills$$.next(current);
+    return await this.skillRepository.delete(awaitedSkill.id);
   }
 }

@@ -1,10 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ISkill } from '@ph24/shared/domain';
+import { Skill } from '@ph24/nest/data-access-skill';
+import { CreateSkillDto } from '@ph24/nest/data-access-skill';
+import { UpdateSkillDto } from '@ph24/nest/data-access-skill';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
-import { Skill } from './entities/skill.entity';
-import { CreateSkillDto } from './dtos/create-skill.dto';
-import { UpdateSkillDto } from './dtos/update-skill.dto';
 
 @ApiBearerAuth()
 @ApiTags('skill')
@@ -20,8 +20,8 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  create(@Body() data: CreateSkillDto): ISkill {
-    return this.nestFeatureSkillService.create(data);
+  async create(@Body() data: CreateSkillDto): Promise<ISkill> {
+    return await this.nestFeatureSkillService.create(data);
   }
 
   @Get()
@@ -32,8 +32,8 @@ export class NestFeatureSkillController {
     type: [Skill],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  getAll(): ISkill[] {
-    return this.nestFeatureSkillService.getAll();
+  async getAll(): Promise<ISkill[]> {
+    return await this.nestFeatureSkillService.getAll();
   }
 
   @Get(':id')
@@ -44,8 +44,8 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  getOne(@Param('id') id: string): ISkill {
-    return this.nestFeatureSkillService.getOne(id);
+  async getOne(@Param('id') id: string): Promise<ISkill | null> {
+    return await this.nestFeatureSkillService.getOne(id);
   }
 
   @Patch(':id')
@@ -56,8 +56,8 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  updateOne(@Param('id') id: string, @Body() data: UpdateSkillDto): ISkill {
-    return this.nestFeatureSkillService.updateOne(id, data);
+  async updateOne(@Param('id') id: string, @Body() data: UpdateSkillDto): Promise<ISkill | null> {
+    return await this.nestFeatureSkillService.updateOne(id, data);
   }
 
   @Delete(':id')
@@ -68,7 +68,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  deleteOne(@Param('id') id: string): void {
-    return this.nestFeatureSkillService.deleteOne(id);
+  async deleteOne(@Param('id') id: string): Promise<ISkill | null> {
+    return await this.nestFeatureSkillService.deleteOne(id);
   }
 }

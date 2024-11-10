@@ -15,7 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ph24/nest/data-access-skill": [
+        "libs/nest/data-access-skill/src/index.ts"
+      ],
       "@ph24/nest/feature-skill": ["libs/nest/feature-skill/src/index.ts"],
+      "@ph24/nest/prisma-client": ["libs/nest/prisma-client/src/index.ts"],
       "@ph24/prisma-client": ["libs/prisma-client/src/index.ts"],
       "@ph24/prisma-schema": ["libs/prisma-schema/prisma/schema.prisma"],
       "@ph24/shared/domain": ["libs/shared/domain/src/index.ts"],
