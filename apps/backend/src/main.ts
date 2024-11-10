@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 const port = process.env.PORT || 5000;
 
@@ -16,6 +16,8 @@ async function bootstrap() {
     type: VersioningType.URI,
     prefix: 'v',
   })
+
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   app.enableCors({
     origin: [

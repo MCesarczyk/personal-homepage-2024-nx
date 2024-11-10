@@ -7,9 +7,16 @@ import { skillsFixture } from './fixtures/skills-fixture';
 export class NestFeatureSkillService {
   private skills$$ = new BehaviorSubject<ISkill[]>(skillsFixture);
 
-  create(skill: ISkill): ISkill {
-    this.skills$$.next([...this.skills$$.value, skill]);
-    return skill;
+  create(data: Pick<ISkill, 'content' | 'state' | 'userId'>): ISkill {
+    const current = this.skills$$.value;
+
+    const newSkill: ISkill = {
+      id: Math.random().toString(36).substr(2, 9),
+      ...data,
+    };
+
+    this.skills$$.next([...current, newSkill]);
+    return newSkill;
   }
 
   getAll(): ISkill[] {

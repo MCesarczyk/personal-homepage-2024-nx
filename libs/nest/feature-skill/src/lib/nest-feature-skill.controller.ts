@@ -1,14 +1,15 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
 import { ISkill } from '@ph24/shared/domain';
+import { CreateSkillDto } from 'libs/nest/feature-skill/src/lib/dtos/create-skill.dto';
 
 @Controller('v1/skill')
 export class NestFeatureSkillController {
   constructor(private nestFeatureSkillService: NestFeatureSkillService) { }
 
   @Post()
-  create(@Body() skill: ISkill): ISkill {
-    return this.nestFeatureSkillService.create(skill);
+  create(@Body() data: CreateSkillDto): ISkill {
+    return this.nestFeatureSkillService.create(data);
   }
 
   @Get()
