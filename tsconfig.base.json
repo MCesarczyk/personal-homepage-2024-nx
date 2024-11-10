@@ -26,6 +26,7 @@
       ],
       "@ph24/nest/feature-project": ["libs/nest/feature-project/src/index.ts"],
       "@ph24/nest/feature-skill": ["libs/nest/feature-skill/src/index.ts"],
+      "@ph24/nest/feature-user": ["libs/nest/feature-user/src/index.ts"],
       "@ph24/nest/prisma-client": ["libs/nest/prisma-client/src/index.ts"],
       "@ph24/prisma-client": ["libs/prisma-client/src/index.ts"],
       "@ph24/prisma-schema": ["libs/prisma-schema/prisma/schema.prisma"],

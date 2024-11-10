@@ -2,17 +2,19 @@ import { Module } from '@nestjs/common';
 import { NestFeatureSkillModule } from '@ph24/nest/feature-skill';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
+// import { AuthModule } from './auth/auth.module';
+// import { UserModule } from './user/user.module';
 import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
+import { NestFeatureUserModule } from '@ph24/nest/feature-user';
 // import { ProjectImageModule } from './project-image/project-image.module';
 
 @Module({
   imports: [
-    AuthModule,
-    UserModule,
+    // AuthModule,
+    // UserModule,
     NestFeatureSkillModule,
     NestFeatureProjectModule,
+    NestFeatureUserModule,
     // ProjectImageModule,
   ],
   controllers: [AppController],
