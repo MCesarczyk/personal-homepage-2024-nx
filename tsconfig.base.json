@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ph24/nest/data-access-project": [
+        "libs/nest/data-access-project/src/index.ts"
+      ],
       "@ph24/nest/data-access-skill": [
         "libs/nest/data-access-skill/src/index.ts"
       ],
