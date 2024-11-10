@@ -7,7 +7,6 @@ import { AppService } from './app.service';
 import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
 import { NestFeatureUserModule } from '@ph24/nest/feature-user';
 import { NestFeatureImageModule } from '@ph24/nest/feature-image';
-// import { ProjectImageModule } from './project-image/project-image.module';
 
 @Module({
   imports: [
@@ -17,7 +16,6 @@ import { NestFeatureImageModule } from '@ph24/nest/feature-image';
     NestFeatureProjectModule,
     NestFeatureImageModule,
     NestFeatureUserModule,
-    // ProjectImageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
