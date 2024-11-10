@@ -1,10 +1,10 @@
 import { BehaviorSubject } from 'rxjs';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { ISkill } from '@ph24/shared/domain';
-import { skillsFixture } from 'libs/backend/feature-skill/src/lib/fixtures/skills-fixture';
+import { skillsFixture } from './fixtures/skills-fixture';
 
 @Injectable()
-export class BackendFeatureSkillService {
+export class NestFeatureSkillService {
   private skills$$ = new BehaviorSubject<ISkill[]>(skillsFixture);
 
   create(skill: ISkill): ISkill {
@@ -24,4 +24,3 @@ export class BackendFeatureSkillService {
     return skill;
   }
 }
-
