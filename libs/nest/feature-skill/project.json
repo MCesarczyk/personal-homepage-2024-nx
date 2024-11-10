@@ -9,11 +9,16 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "libs/nest/feature-skill/jest.config.ts"
       }
     }
   },
-  "tags": ["scope:server", "type:feature"]
+  "tags": [
+    "scope:nest",
+    "type:feature"
+  ]
 }

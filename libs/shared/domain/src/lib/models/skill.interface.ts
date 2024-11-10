@@ -1,4 +1,4 @@
-import { SkillState } from "libs/shared/domain/src/lib/types/skill-state";
+import { SkillState } from "../types/skill-state";
 
 export interface ISkill {
   id: string;

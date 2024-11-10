@@ -35,5 +35,8 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "scope:prisma",
+    "type:schema"
+  ]
 }
