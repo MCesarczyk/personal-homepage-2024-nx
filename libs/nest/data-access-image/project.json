@@ -1,0 +1,19 @@
+{
+  "name": "nest-data-access-image",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/nest/data-access-image/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/nest/data-access-image/jest.config.ts"
+      }
+    }
+  },
+  "tags": ["scope:nest", "type:data-access"]
+}
