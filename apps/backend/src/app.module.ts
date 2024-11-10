@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { BackendFeatureSkillModule } from '@ph24/backend-feature-skill';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -11,11 +12,12 @@ import { ProjectImageModule } from './project-image/project-image.module';
   imports: [
     AuthModule,
     UserModule,
-    SkillModule,
+    // SkillModule,
+    BackendFeatureSkillModule,
     ProjectModule,
     ProjectImageModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

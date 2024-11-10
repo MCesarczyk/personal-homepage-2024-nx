@@ -38,7 +38,7 @@
     "react-dom": "18.2.0",
     "react-router-dom": "6.11.2",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0",
+    "rxjs": "^7.8.1",
     "save-file": "^2.3.1",
     "tslib": "^2.3.0",
     "utils-agnostic": "^1.0.0"
