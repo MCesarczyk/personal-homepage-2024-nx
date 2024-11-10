@@ -4,6 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
+import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
 // import { ProjectModule } from './project/project.module';
 // import { ProjectImageModule } from './project-image/project-image.module';
 
@@ -12,6 +13,7 @@ import { UserModule } from './user/user.module';
     AuthModule,
     UserModule,
     NestFeatureSkillModule,
+    NestFeatureProjectModule,
     // ProjectModule,
     // ProjectImageModule,
   ],
