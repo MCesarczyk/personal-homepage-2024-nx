@@ -11,7 +11,7 @@ export class NestFeatureSkillService {
     const current = this.skills$$.value;
 
     const newSkill: ISkill = {
-      id: Math.random().toString(36).substr(2, 9),
+      id: `${Math.floor(Math.random() * 100000)}`,
       ...data,
     };
 
@@ -29,5 +29,29 @@ export class NestFeatureSkillService {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
     return skill;
+  }
+
+  updateOne(id: string, data: Partial<ISkill>): ISkill {
+    const current = this.skills$$.value;
+    const index = current.findIndex((skill) => skill.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Skill with id ${id} not found`);
+    }
+
+    const updatedSkill = { ...current[index], ...data };
+    current[index] = updatedSkill;
+    this.skills$$.next(current);
+    return updatedSkill;
+  }
+
+  deleteOne(id: string): void {
+    const current = this.skills$$.value;
+    const index = current.findIndex((skill) => skill.id === id);
+    if (index === -1) {
+      throw new NotFoundException(`Skill with id ${id} not found`);
+    }
+
+    current.splice(index, 1);
+    this.skills$$.next(current);
   }
 }
