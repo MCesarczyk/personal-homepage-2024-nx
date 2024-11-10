@@ -27,6 +27,7 @@
       "@ph24/nest/data-access-user": [
         "libs/nest/data-access-user/src/index.ts"
       ],
+      "@ph24/nest/feature-image": ["libs/nest/feature-image/src/index.ts"],
       "@ph24/nest/feature-project": ["libs/nest/feature-project/src/index.ts"],
       "@ph24/nest/feature-skill": ["libs/nest/feature-skill/src/index.ts"],
       "@ph24/nest/feature-user": ["libs/nest/feature-user/src/index.ts"],

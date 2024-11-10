@@ -6,6 +6,7 @@ import { AppService } from './app.service';
 // import { UserModule } from './user/user.module';
 import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
 import { NestFeatureUserModule } from '@ph24/nest/feature-user';
+import { NestFeatureImageModule } from '@ph24/nest/feature-image';
 // import { ProjectImageModule } from './project-image/project-image.module';
 
 @Module({
@@ -14,6 +15,7 @@ import { NestFeatureUserModule } from '@ph24/nest/feature-user';
     // UserModule,
     NestFeatureSkillModule,
     NestFeatureProjectModule,
+    NestFeatureImageModule,
     NestFeatureUserModule,
     // ProjectImageModule,
   ],
