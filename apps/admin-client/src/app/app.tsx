@@ -4,7 +4,7 @@ import { ROUTES } from '../app/routes';
 import { LoginPage } from '../pages/login';
 import { DashboardPage } from '../pages/dashboard';
 import { SkillsPage } from '../pages/skills';
-import { Navigation } from '../components/navigation';
+import { Navigation } from './navigation';
 import { ProtectedRoute } from './protectedRoute';
 import './styles.css';
 

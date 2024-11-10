@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@ph24/ui';
-import { authService } from '../auth/authService';
-import { ROUTES } from '../app/routes';
+import { authService } from './authService';
+import { ROUTES } from '../../app/routes';
 
 interface LoginFormProps {
   setToken: (token: string) => void;

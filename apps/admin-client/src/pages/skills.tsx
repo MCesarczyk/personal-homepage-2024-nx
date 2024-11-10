@@ -1,4 +1,4 @@
-import { KanbanBoard } from '../components/kanbanBoard';
+import { KanbanBoard } from '../features/skills/kanbanBoard';
 
 export const SkillsPage = () => {
   return (

@@ -23,9 +23,9 @@ import { FeedbackMessage } from '../auth/entities/feedbackMessage.entity';
 
 @ApiBearerAuth()
 @ApiTags('auth')
-@Controller('auth')
+@Controller({ version: '1', path: 'auth' })
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) { }
 
   @Public()
   @HttpCode(HttpStatus.OK)
