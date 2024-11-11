@@ -52,7 +52,7 @@ async function bootstrap() {
     .build();
 
   const options =
-    process.env.ENV === 'production' ? productionOptions : developmentOptions;
+    process.env.NODE_ENV === 'production' ? productionOptions : developmentOptions;
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);
