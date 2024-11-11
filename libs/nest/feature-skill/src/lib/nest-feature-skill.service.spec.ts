@@ -1,4 +1,5 @@
 import { Test } from '@nestjs/testing';
+import { NestDataAccessSkillModule } from '@ph24/nest/data-access-skill';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
 
 describe('NestFeatureSkillService', () => {
@@ -6,6 +7,7 @@ describe('NestFeatureSkillService', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
+      imports: [NestDataAccessSkillModule],
       providers: [NestFeatureSkillService],
     }).compile();
 

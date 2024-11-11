@@ -21,7 +21,7 @@ describe('AppController', () => {
   describe('root', () => {
     it('should return proper message', () => {
       expect(appController.getHello()).toBe(
-        '<h1>Backend for <a href="https://cesarczyk.dev" >cesarczyk.dev</a> portfolio up and running 🚀</h1>    <p><h3>Docs available at <a href="https://personal-homepage-2024-backend-production.up.railway.app/docs" >https://personal-homepage-2024-backend-production.up.railway.app/docs</a></h3></p>',
+        '<h1>Backend for <a href="http://localhost:4200" >localhost:4200</a> portfolio up and running 🚀</h1>    <p><h3>Docs available at <a href="http://localhost:5000/docs" >localhost:5000/docs</a></h3></p>',
       );
     });
   });

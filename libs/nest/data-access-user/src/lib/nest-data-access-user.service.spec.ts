@@ -1,4 +1,5 @@
 import { Test } from '@nestjs/testing';
+import { NestPrismaClientModule } from '@ph24/nest/prisma-client';
 import { NestDataAccessUserService } from './nest-data-access-user.service';
 
 describe('NestDataAccessUserService', () => {
@@ -6,6 +7,7 @@ describe('NestDataAccessUserService', () => {
 
   beforeEach(async () => {
     const module = await Test.createTestingModule({
+      imports: [NestPrismaClientModule],
       providers: [NestDataAccessUserService],
     }).compile();
 
