@@ -1,8 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { IProject } from '@ph24/shared/domain';
-import { CreateProjectDto } from '@ph24/nest/data-access-project';
-import { Project, UpdateProjectDto } from '@ph24/nest/data-access-project';
+import { Project, UpdateProjectDto, CreateProjectDto } from '@ph24/nest/data-access-project';
 import { NestFeatureProjectService } from './nest-feature-project.service';
 
 @ApiBearerAuth()
@@ -19,7 +17,7 @@ export class NestFeatureProjectController {
     type: Project,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async create(@Body() data: CreateProjectDto): Promise<IProject> {
+  async create(@Body() data: CreateProjectDto): Promise<Project> {
     return await this.projectService.create(data);
   }
 

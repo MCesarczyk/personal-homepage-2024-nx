@@ -1,8 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { ISkill } from '@ph24/shared/domain';
-import { Skill } from '@ph24/nest/data-access-skill';
-import { CreateSkillDto, UpdateSkillDto } from '@ph24/nest/data-access-skill';
+import { Skill, CreateSkillDto, UpdateSkillDto } from '@ph24/nest/data-access-skill';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
 
 @ApiBearerAuth()
@@ -19,7 +17,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async create(@Body() data: CreateSkillDto): Promise<ISkill> {
+  async create(@Body() data: CreateSkillDto): Promise<Skill> {
     return await this.skillService.create(data);
   }
 
@@ -31,7 +29,7 @@ export class NestFeatureSkillController {
     type: [Skill],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async getAll(): Promise<ISkill[]> {
+  async getAll(): Promise<Skill[]> {
     return await this.skillService.getAll();
   }
 
@@ -43,7 +41,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async getOne(@Param('id') id: string): Promise<ISkill | null> {
+  async getOne(@Param('id') id: string): Promise<Skill | null> {
     return await this.skillService.getOne(id);
   }
 
@@ -55,7 +53,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async updateOne(@Param('id') id: string, @Body() data: UpdateSkillDto): Promise<ISkill | null> {
+  async updateOne(@Param('id') id: string, @Body() data: UpdateSkillDto): Promise<Skill | null> {
     return await this.skillService.updateOne(id, data);
   }
 
@@ -67,7 +65,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async deleteOne(@Param('id') id: string): Promise<ISkill | null> {
+  async deleteOne(@Param('id') id: string): Promise<Skill | null> {
     return await this.skillService.deleteOne(id);
   }
 }

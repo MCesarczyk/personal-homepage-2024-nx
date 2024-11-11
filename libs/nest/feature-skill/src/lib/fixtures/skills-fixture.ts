@@ -1,6 +1,6 @@
-import { ISkill } from '@ph24/shared/domain';
+import { Skill } from "@ph24/nest/data-access-skill";
 
-export const skillsFixture: ISkill[] = [
+export const skillsFixture: Skill[] = [
   {
     id: '0591572d-8a14-4dbb-842c-166c1689464f',
     content: 'Figma',

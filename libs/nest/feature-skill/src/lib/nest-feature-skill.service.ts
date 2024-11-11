@@ -1,20 +1,19 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
-import { ISkill } from '@ph24/shared/domain';
-import { NestDataAccessSkillService } from '@ph24/nest/data-access-skill';
+import { NestDataAccessSkillService, Skill, UpdateSkillDto, CreateSkillDto } from '@ph24/nest/data-access-skill';
 
 @Injectable()
 export class NestFeatureSkillService {
   constructor(private skillRepository: NestDataAccessSkillService) { }
 
-  async create(data: Pick<ISkill, 'content' | 'state' | 'userId'>): Promise<ISkill> {
+  async create(data: CreateSkillDto): Promise<Skill> {
     return await this.skillRepository.create(data);
   }
 
-  async getAll(): Promise<ISkill[]> {
+  async getAll(): Promise<Skill[]> {
     return await this.skillRepository.findAll();
   }
 
-  async getOne(id: string): Promise<ISkill | null> {
+  async getOne(id: string): Promise<Skill | null> {
     const skill = await this.skillRepository.findOne(id);
     if (!skill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
@@ -22,7 +21,7 @@ export class NestFeatureSkillService {
     return skill;
   }
 
-  async updateOne(id: string, data: Partial<ISkill>): Promise<ISkill | null> {
+  async updateOne(id: string, data: UpdateSkillDto): Promise<Skill | null> {
     const awaitedSkill = await this.getOne(id);
     if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
@@ -31,7 +30,7 @@ export class NestFeatureSkillService {
     return await this.skillRepository.update(id, data);
   }
 
-  async deleteOne(id: string): Promise<ISkill | null> {
+  async deleteOne(id: string): Promise<Skill | null> {
     const awaitedSkill = await this.getOne(id);
     if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);

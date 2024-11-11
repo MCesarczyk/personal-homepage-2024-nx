@@ -1,8 +1,7 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
-import { NestFeatureImageService } from './nest-feature-image.service';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateImageDto, Image, UpdateImageDto } from '@ph24/nest/data-access-image';
-import { IImage } from '@ph24/shared/domain';
+import { NestFeatureImageService } from './nest-feature-image.service';
 
 @ApiBearerAuth()
 @ApiTags('image')
@@ -20,7 +19,7 @@ export class NestFeatureImageController {
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   create(
     @Body() createProjectImageDto: CreateImageDto,
-  ): Promise<IImage> {
+  ): Promise<Image> {
     return this.imageService.create(createProjectImageDto);
   }
 
@@ -32,7 +31,7 @@ export class NestFeatureImageController {
     type: [Image],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  findAll(): Promise<IImage[]> {
+  findAll(): Promise<Image[]> {
     return this.imageService.getAll();
   }
 
@@ -44,7 +43,7 @@ export class NestFeatureImageController {
     type: Image,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  findOne(@Param('id') id: string): Promise<IImage | null> {
+  findOne(@Param('id') id: string): Promise<Image | null> {
     return this.imageService.getOne(id);
   }
 
@@ -59,7 +58,7 @@ export class NestFeatureImageController {
   update(
     @Param('id') id: string,
     @Body() updateProjectImageDto: UpdateImageDto,
-  ): Promise<IImage | null> {
+  ): Promise<Image | null> {
     return this.imageService.updateOne(id, updateProjectImageDto);
   }
 
@@ -71,7 +70,7 @@ export class NestFeatureImageController {
     type: Image,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  remove(@Param('id') id: string): Promise<IImage | null> {
+  remove(@Param('id') id: string): Promise<Image | null> {
     return this.imageService.deleteOne(id);
   }
 }
