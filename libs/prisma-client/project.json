@@ -11,5 +11,8 @@
       }
     }
   },
-  "tags": []
+  "tags": [
+    "scope:prisma",
+    "type:client"
+  ]
 }

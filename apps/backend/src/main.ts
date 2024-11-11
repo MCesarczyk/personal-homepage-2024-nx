@@ -2,7 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import cookieParser from 'cookie-parser';
-import { VersioningType } from '@nestjs/common';
+import { ValidationPipe, VersioningType } from '@nestjs/common';
 
 const port = process.env.PORT || 5000;
 
@@ -17,11 +17,14 @@ async function bootstrap() {
     prefix: 'v',
   })
 
+  app.useGlobalPipes(new ValidationPipe({ transform: true }));
+
   app.enableCors({
     origin: [
       process.env.FRONTEND_URL,
       process.env.ADMIN_URL,
-      process.env.PUBLIC_URL
+      process.env.PUBLIC_URL,
+      'http://localhost:5000',
     ],
     credentials: true,
   });
@@ -50,7 +53,7 @@ async function bootstrap() {
     .build();
 
   const options =
-    process.env.ENV === 'production' ? productionOptions : developmentOptions;
+    process.env.NODE_ENV === 'production' ? productionOptions : developmentOptions;
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);

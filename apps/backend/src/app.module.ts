@@ -1,21 +1,23 @@
 import { Module } from '@nestjs/common';
+import { NestFeatureSkillModule } from '@ph24/nest/feature-skill';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { AuthModule } from './auth/auth.module';
-import { UserModule } from './user/user.module';
-import { SkillModule } from './skill/skill.module';
-import { ProjectModule } from './project/project.module';
-import { ProjectImageModule } from './project-image/project-image.module';
+// import { AuthModule } from './auth/auth.module';
+// import { UserModule } from './user/user.module';
+import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
+import { NestFeatureUserModule } from '@ph24/nest/feature-user';
+import { NestFeatureImageModule } from '@ph24/nest/feature-image';
 
 @Module({
   imports: [
-    AuthModule,
-    UserModule,
-    SkillModule,
-    ProjectModule,
-    ProjectImageModule,
+    // AuthModule,
+    // UserModule,
+    NestFeatureSkillModule,
+    NestFeatureProjectModule,
+    NestFeatureImageModule,
+    NestFeatureUserModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

@@ -6,7 +6,9 @@
   "targets": {
     "build": {
       "executor": "@nx/vite:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/admin-client"
@@ -54,7 +56,9 @@
     },
     "test": {
       "executor": "@nx/vite:test",
-      "outputs": ["{options.reportsDirectory}"],
+      "outputs": [
+        "{options.reportsDirectory}"
+      ],
       "options": {
         "reportsDirectory": "../../coverage/apps/admin-client"
       }
@@ -63,5 +67,8 @@
       "executor": "@nx/eslint:lint"
     }
   },
-  "tags": []
+  "tags": [
+    "scope:admin-client",
+    "type:app"
+  ]
 }
