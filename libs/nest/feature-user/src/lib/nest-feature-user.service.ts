@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
 import { CreateUserDto, NestDataAccessUserService, UpdateUserDto, User, UserResponseDto } from '@ph24/nest/data-access-user';
 
@@ -7,6 +7,11 @@ export class NestFeatureUserService {
   constructor(private userRepository: NestDataAccessUserService) { }
 
   async create(user: CreateUserDto): Promise<UserResponseDto> {
+    const duplicatedUser = await this.userRepository.findOneByEmail(user.email);
+    if (duplicatedUser) {
+      throw new ConflictException(`User with email ${user.email} already exists`);
+    }
+
     const { password, ...userData } = user;
     user.password = await bcrypt.hash(password, 10);
     const newUser = await this.userRepository.createUser({ ...userData, password: user.password });
