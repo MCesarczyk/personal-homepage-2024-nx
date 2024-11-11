@@ -6,3 +6,5 @@ export interface IUser {
   occupation: string;
   introduction: string;
 }
+
+export type IPublicUserData = Omit<IUser, 'password'>;
