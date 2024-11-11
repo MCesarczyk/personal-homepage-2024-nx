@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
 import { NestFeatureImageService } from './nest-feature-image.service';
-import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateImageDto, Image, UpdateImageDto } from '@ph24/nest/data-access-image';
 import { IImage } from '@ph24/shared/domain';
 
@@ -11,6 +11,7 @@ export class NestFeatureImageController {
   constructor(private imageService: NestFeatureImageService) { }
 
   @Post()
+  @ApiOperation({ summary: 'Create a new image.' })
   @ApiResponse({
     status: 201,
     description: 'Image created successfully.',
@@ -24,6 +25,7 @@ export class NestFeatureImageController {
   }
 
   @Get()
+  @ApiOperation({ summary: 'Get all images.' })
   @ApiResponse({
     status: 200,
     description: 'Retrieved all images.',
@@ -35,6 +37,7 @@ export class NestFeatureImageController {
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'Get image by id.' })
   @ApiResponse({
     status: 200,
     description: 'Retrieved image.',
@@ -46,6 +49,7 @@ export class NestFeatureImageController {
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update a project image.' })
   @ApiResponse({
     status: 200,
     description: 'Updated a project image.',
@@ -60,6 +64,7 @@ export class NestFeatureImageController {
   }
 
   @Delete(':id')
+  @ApiOperation({ summary: 'Remove a project image.' })
   @ApiResponse({
     status: 200,
     description: 'Removed a project image.',
