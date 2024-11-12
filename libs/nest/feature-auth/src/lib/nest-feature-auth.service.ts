@@ -2,7 +2,6 @@ import { forwardRef, Inject, Injectable, Logger } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { NestFeatureUserService } from '@ph24/nest/feature-user';
-import { User } from '@ph24/nest/data-access-user';
 import { IAccessTokenPayload, IPublicUserData, ITokenResponse } from '@ph24/shared/domain';
 
 @Injectable()
@@ -30,10 +29,10 @@ export class NestFeatureAuthService {
     return null;
   }
 
-  generateAccessToken(user: User): ITokenResponse {
+  async generateAccessToken(user: IPublicUserData): Promise<ITokenResponse> {
     const payload: IAccessTokenPayload = { email: user.email, sub: user.id };
     return {
-      access_token: this.jwtService.sign(payload),
+      access_token: await this.jwtService.signAsync(payload),
     }
   }
 }

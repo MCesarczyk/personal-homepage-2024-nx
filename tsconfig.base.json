@@ -15,6 +15,9 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ph24/nest/data-access-auth": [
+        "libs/nest/data-access-auth/src/index.ts"
+      ],
       "@ph24/nest/data-access-image": [
         "libs/nest/data-access-image/src/index.ts"
       ],
