@@ -33,18 +33,18 @@ describe('NestFeatureUserService', () => {
 
   it('should return a user by id', async () => {
     const result = usersArray[0];
-    jest.spyOn(service, 'getOne').mockResolvedValue(result);
-    expect(await service.getOne(usersArray[0].id)).toStrictEqual(result);
-    expect(service.getOne).toHaveBeenCalledWith(usersArray[0].id);
+    jest.spyOn(service, 'getOneById').mockResolvedValue(result);
+    expect(await service.getOneById(usersArray[0].id)).toStrictEqual(result);
+    expect(service.getOneById).toHaveBeenCalledWith(usersArray[0].id);
   });
 
   it('should throw and exception when a user id is not found', async () => {
-    jest.spyOn(service, 'getOne').mockResolvedValue(null);
+    jest.spyOn(service, 'getOneById').mockResolvedValue(null);
     try {
-      await service.getOne('8');
+      await service.getOneById('8');
     } catch (e) {
       expect(e).toBeInstanceOf(NotFoundException);
-      expect(service.getOne).toHaveBeenCalledWith('8');
+      expect(service.getOneById).toHaveBeenCalledWith('8');
     }
   });
 
