@@ -29,6 +29,10 @@ export class NestFeatureAuthService {
     return null;
   }
 
+  async identifyUser(email: string): Promise<IPublicUserData | null> {
+    return this.userService.getOneByEmail(email);
+  }
+
   async generateAccessToken(user: IPublicUserData): Promise<ITokenResponse> {
     const payload: IAccessTokenPayload = { email: user.email, sub: user.id };
     return {
