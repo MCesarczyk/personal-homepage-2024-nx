@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateUserDto, UpdateUserDto, User } from '@ph24/nest/data-access-user';
+import { CreateUserDto, UpdateUserDto, UserResponseDto } from '@ph24/nest/data-access-user';
 import { NestFeatureUserService } from './nest-feature-user.service';
 
 @ApiBearerAuth()
@@ -14,10 +14,10 @@ export class NestFeatureUserController {
   @ApiResponse({
     status: HttpStatus.CREATED,
     description: 'The user account has been successfully created.',
-    type: User,
+    type: UserResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  create(@Body() data: CreateUserDto): Promise<User> {
+  create(@Body() data: CreateUserDto): Promise<UserResponseDto> {
     return this.userService.create(data);
   }
 
@@ -26,10 +26,10 @@ export class NestFeatureUserController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Return all users.',
-    type: [User],
+    type: [UserResponseDto],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  getAll(): Promise<User[]> {
+  getAll(): Promise<UserResponseDto[]> {
     return this.userService.getAll();
   }
 
@@ -38,11 +38,11 @@ export class NestFeatureUserController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Get user by id',
-    type: User,
+    type: UserResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  getOne(@Param('id') id: string): Promise<User | null> {
-    return this.userService.getOne(id);
+  getOne(@Param('id') id: string): Promise<UserResponseDto | null> {
+    return this.userService.getOneById(id);
   }
 
   @Patch(':id')
@@ -50,10 +50,10 @@ export class NestFeatureUserController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Return user updated.',
-    type: User,
+    type: UserResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  updateOne(@Param('id') id: string, @Body() data: UpdateUserDto): Promise<User | null> {
+  updateOne(@Param('id') id: string, @Body() data: UpdateUserDto): Promise<UserResponseDto | null> {
     return this.userService.updateOne(id, data);
   }
 
@@ -62,10 +62,10 @@ export class NestFeatureUserController {
   @ApiResponse({
     status: HttpStatus.OK,
     description: 'Return user deleted.',
-    type: User,
+    type: UserResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  deleteOne(@Param('id') id: string): Promise<User | null> {
+  deleteOne(@Param('id') id: string): Promise<UserResponseDto | null> {
     return this.userService.deleteOne(id);
   }
 }
