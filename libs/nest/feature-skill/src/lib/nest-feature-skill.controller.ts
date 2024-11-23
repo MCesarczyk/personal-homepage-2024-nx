@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Skill, CreateSkillDto, UpdateSkillDto } from '@ph24/nest/data-access-skill';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
+import { ReqUserId } from '@ph24/nest/util';
 
 @ApiBearerAuth()
 @ApiTags('skill')
@@ -29,8 +30,8 @@ export class NestFeatureSkillController {
     type: [Skill],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async getAll(): Promise<Skill[]> {
-    return await this.skillService.getAll();
+  async getAll(@ReqUserId() userId: string): Promise<Skill[]> {
+    return await this.skillService.getAll(userId);
   }
 
   @Get(':id')
@@ -41,8 +42,8 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async getOne(@Param('id') id: string): Promise<Skill | null> {
-    return await this.skillService.getOne(id);
+  async getOne(@ReqUserId() userId: string, @Param('id') id: string): Promise<Skill | null> {
+    return await this.skillService.getOne(userId, id);
   }
 
   @Patch(':id')
@@ -53,8 +54,8 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async updateOne(@Param('id') id: string, @Body() data: UpdateSkillDto): Promise<Skill | null> {
-    return await this.skillService.updateOne(id, data);
+  async updateOne(@ReqUserId() userId: string, @Param('id') id: string, @Body() data: UpdateSkillDto): Promise<Skill | null> {
+    return await this.skillService.updateOne(userId, id, data);
   }
 
   @Delete(':id')
@@ -65,7 +66,7 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async deleteOne(@Param('id') id: string): Promise<Skill | null> {
-    return await this.skillService.deleteOne(id);
+  async deleteOne(@ReqUserId() userId: string, @Param('id') id: string): Promise<Skill | null> {
+    return await this.skillService.deleteOne(userId, id);
   }
 }

@@ -9,33 +9,33 @@ export class NestFeatureSkillService {
     return await this.skillRepository.create(data);
   }
 
-  async getAll(): Promise<Skill[]> {
-    return await this.skillRepository.findAll();
+  async getAll(userId: string): Promise<Skill[]> {
+    return await this.skillRepository.findAll(userId);
   }
 
-  async getOne(id: string): Promise<Skill | null> {
-    const skill = await this.skillRepository.findOne(id);
+  async getOne(userId: string, id: string): Promise<Skill | null> {
+    const skill = await this.skillRepository.findOne(userId, id);
     if (!skill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
     return skill;
   }
 
-  async updateOne(id: string, data: UpdateSkillDto): Promise<Skill | null> {
-    const awaitedSkill = await this.getOne(id);
+  async updateOne(userId: string, id: string, data: UpdateSkillDto): Promise<Skill | null> {
+    const awaitedSkill = await this.getOne(userId, id);
     if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
 
-    return await this.skillRepository.update(id, data);
+    return await this.skillRepository.update(userId, id, data);
   }
 
-  async deleteOne(id: string): Promise<Skill | null> {
-    const awaitedSkill = await this.getOne(id);
+  async deleteOne(userId: string, id: string): Promise<Skill | null> {
+    const awaitedSkill = await this.getOne(userId, id);
     if (!awaitedSkill) {
       throw new NotFoundException(`Skill with id ${id} not found`);
     }
 
-    return await this.skillRepository.delete(awaitedSkill.id);
+    return await this.skillRepository.delete(userId, awaitedSkill.id);
   }
 }

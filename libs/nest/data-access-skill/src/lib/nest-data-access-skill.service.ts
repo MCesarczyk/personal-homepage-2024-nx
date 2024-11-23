@@ -14,26 +14,28 @@ export class NestDataAccessSkillService {
     });
   }
 
-  findAll(): Promise<Skill[]> {
-    return this.prisma.skill.findMany();
-  }
-
-  findOne(id: string): Promise<Skill | null> {
-    return this.prisma.skill.findUnique({
-      where: { id },
+  findAll(userId: string): Promise<Skill[]> {
+    return this.prisma.skill.findMany({
+      where: { userId },
     });
   }
 
-  update(id: string, updateSkillDto: UpdateSkillDto): Promise<Skill | null> {
+  findOne(userId: string, id: string): Promise<Skill | null> {
+    return this.prisma.skill.findUnique({
+      where: { userId, id },
+    });
+  }
+
+  update(userId: string, id: string, updateSkillDto: UpdateSkillDto): Promise<Skill | null> {
     return this.prisma.skill.update({
-      where: { id },
+      where: { userId, id },
       data: updateSkillDto,
     });
   }
 
-  delete(id: string): Promise<Skill | null> {
+  delete(userId: string, id: string): Promise<Skill | null> {
     return this.prisma.skill.delete({
-      where: { id },
+      where: { userId, id },
     });
   }
 }
