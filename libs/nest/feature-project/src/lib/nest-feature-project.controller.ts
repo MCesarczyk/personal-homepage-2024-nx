@@ -2,6 +2,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/commo
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Project, UpdateProjectDto, CreateProjectDto } from '@ph24/nest/data-access-project';
 import { NestFeatureProjectService } from './nest-feature-project.service';
+import { ReqUserId } from '@ph24/nest/util';
 
 @ApiBearerAuth()
 @ApiTags('project')
@@ -29,8 +30,8 @@ export class NestFeatureProjectController {
     type: [CreateProjectDto],
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  findAll() {
-    return this.projectService.getAll();
+  findAll(@ReqUserId() userId: string) {
+    return this.projectService.getAll(userId);
   }
 
   @Get(':id')
@@ -41,8 +42,8 @@ export class NestFeatureProjectController {
     type: CreateProjectDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  findOne(@Param('id') id: string) {
-    return this.projectService.getOne(id);
+  findOne(@ReqUserId() userId: string, @Param('id') id: string) {
+    return this.projectService.getOne(userId, id);
   }
 
   @Patch(':id')
@@ -53,8 +54,8 @@ export class NestFeatureProjectController {
     type: CreateProjectDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  update(@Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
-    return this.projectService.updateOne(id, updateProjectDto);
+  update(@ReqUserId() userId: string, @Param('id') id: string, @Body() updateProjectDto: UpdateProjectDto) {
+    return this.projectService.updateOne(userId, id, updateProjectDto);
   }
 
   @Delete(':id')
@@ -65,8 +66,8 @@ export class NestFeatureProjectController {
     type: CreateProjectDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  remove(@Param('id') id: string) {
-    return this.projectService.deleteOne(id);
+  remove(@ReqUserId() userId: string, @Param('id') id: string) {
+    return this.projectService.deleteOne(userId, id);
   }
 }
 

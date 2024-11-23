@@ -9,33 +9,33 @@ export class NestFeatureProjectService {
     return await this.projectRepository.create(data);
   }
 
-  async getAll(): Promise<Project[]> {
-    return await this.projectRepository.findAll();
+  async getAll(userId: string): Promise<Project[]> {
+    return await this.projectRepository.findAll(userId);
   }
 
-  async getOne(id: string): Promise<Project | null> {
-    const project = await this.projectRepository.findOne(id);
+  async getOne(userId: string, id: string): Promise<Project | null> {
+    const project = await this.projectRepository.findOne(userId, id);
     if (!project) {
       throw new NotFoundException(`Project with id ${id} not found`);
     }
     return project;
   }
 
-  async updateOne(id: string, data: UpdateProjectDto): Promise<Project | null> {
-    const awaitedProject = await this.getOne(id);
+  async updateOne(userId: string, id: string, data: UpdateProjectDto): Promise<Project | null> {
+    const awaitedProject = await this.getOne(userId, id);
     if (!awaitedProject) {
       throw new NotFoundException(`Project with id ${id} not found`);
     }
 
-    return await this.projectRepository.update(id, data);
+    return await this.projectRepository.update(userId, id, data);
   }
 
-  async deleteOne(id: string) {
-    const awaitedProject = await this.getOne(id);
+  async deleteOne(userId: string, id: string) {
+    const awaitedProject = await this.getOne(userId, id);
     if (!awaitedProject) {
       throw new NotFoundException(`Project with id ${id} not found`);
     }
 
-    return await this.projectRepository.remove(id);
+    return await this.projectRepository.remove(userId, id);
   }
 }
