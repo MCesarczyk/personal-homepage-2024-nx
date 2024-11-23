@@ -1,16 +1,18 @@
-import { Body, Controller, Delete, Get, HttpStatus, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpStatus, NotFoundException, Param, ParseUUIDPipe, Patch, Post } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateUserDto, UpdateUserDto, UserResponseDto } from '@ph24/nest/data-access-user';
 import { NestFeatureUserService } from './nest-feature-user.service';
+import { ReqUserId, SkipAuth } from '@ph24/nest/util';
 
-@ApiBearerAuth()
 @ApiTags('user')
+@ApiBearerAuth()
 @Controller({ version: '1', path: 'user' })
 export class NestFeatureUserController {
   constructor(private userService: NestFeatureUserService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create user account' })
+  @SkipAuth()
   @ApiResponse({
     status: HttpStatus.CREATED,
     description: 'The user account has been successfully created.',
@@ -41,7 +43,10 @@ export class NestFeatureUserController {
     type: UserResponseDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized' })
-  getOne(@Param('id') id: string): Promise<UserResponseDto | null> {
+  getOne(@ReqUserId() reqUserId: string, @Param('id', ParseUUIDPipe) id: string): Promise<UserResponseDto | null> {
+    if (reqUserId !== id) {
+      throw new NotFoundException();
+    }
     return this.userService.getOneById(id);
   }
 

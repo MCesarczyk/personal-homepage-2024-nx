@@ -1,15 +1,18 @@
 import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { NestFeatureAuthService } from './nest-feature-auth.service';
 import { LoginRequestDto, LoginResponseDto, UserIdentifyPayloadDto } from '@ph24/nest/data-access-auth';
 import { UserResponseDto } from '@ph24/nest/data-access-user';
+import { SkipAuth } from '@ph24/nest/util';
 
 @ApiTags('auth')
+@ApiBearerAuth()
 @Controller({ version: '1', path: 'auth' })
 export class NestFeatureAuthController {
   constructor(private nestFeatureAuthService: NestFeatureAuthService) { }
 
   @Post('login')
+  @SkipAuth()
   @ApiOperation({ summary: 'login user' })
   @ApiOperation({ summary: 'Login' })
   @ApiOkResponse({ type: LoginResponseDto })
@@ -22,6 +25,7 @@ export class NestFeatureAuthController {
   }
 
   @Post('identify')
+  @SkipAuth()
   @ApiOperation({ summary: 'Identify current user' })
   @ApiOkResponse({ type: UserResponseDto })
   async identify(@Body() { email }: UserIdentifyPayloadDto): Promise<UserResponseDto> {

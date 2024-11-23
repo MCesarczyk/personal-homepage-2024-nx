@@ -8,6 +8,8 @@ import { NestFeatureProjectModule } from '@ph24/nest/feature-project';
 import { NestFeatureUserModule } from '@ph24/nest/feature-user';
 import { NestFeatureImageModule } from '@ph24/nest/feature-image';
 import { NestFeatureAuthModule } from '@ph24/nest/feature-auth';
+import { APP_GUARD } from '@nestjs/core';
+import { JwtAuthGuard } from '@ph24/nest/util';
 
 @Module({
   imports: [
@@ -20,6 +22,6 @@ import { NestFeatureAuthModule } from '@ph24/nest/feature-auth';
     NestFeatureAuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: APP_GUARD, useClass: JwtAuthGuard }],
 })
 export class AppModule { }
