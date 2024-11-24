@@ -38,16 +38,17 @@ export class NestDataAccessUserService {
     });
   }
 
-  findOneById(id: string): Promise<UserResponseDto | null> {
+  findOneById(id: string): Promise<User | null> {
     return this.prisma.user.findUnique({
       where: { id },
       select: {
         id: true,
         email: true,
         name: true,
-        password: false,
+        password: true,
         occupation: true,
         introduction: true,
+        refreshToken: true,
       }
     });
   }

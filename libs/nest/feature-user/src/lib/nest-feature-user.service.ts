@@ -22,7 +22,7 @@ export class NestFeatureUserService {
     return await this.userRepository.findAll();
   }
 
-  async getOneById(id: string): Promise<UserResponseDto | null> {
+  async getOneById(id: string): Promise<User | null> {
     const user = await this.userRepository.findOneById(id);
     if (!user) {
       throw new NotFoundException(`User with id ${id} not found`);

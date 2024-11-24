@@ -49,4 +49,11 @@ export class User implements IUser {
   })
   @IsString()
   introduction!: string;
+
+  @ApiProperty({
+    example: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQ5MjY4NDJiLWNkMTgtNDQ4Zi1hMWI5LWNjNDcxYThlY2I0ZCIsInRva2VuSWQiOiIyMTRkMWY3ZC0wNmYwLTQ2ZjgtOTBmMC0wYjE2OGVlMjE4ZTUiLCJpYXQiOjE3MzI0MDcxNTAsImV4cCI6MTczMzAxMTk1MH0.9WdfXrZe737kjKiutZ7ANu-1RI0h8CY7U1dKtrzavME',
+    description: 'The refresh token for the user',
+  })
+  @IsString()
+  refreshToken!: string | null;
 }
