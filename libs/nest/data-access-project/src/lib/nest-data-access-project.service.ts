@@ -8,32 +8,36 @@ import { Project } from './entities/project.entity';
 export class NestDataAccessProjectService {
   constructor(private prisma: NestPrismaClientService) { }
 
-  create(createProjectDto: CreateProjectDto): Promise<Project> {
+  create(createProjectDto: CreateProjectDto & { userId: string }): Promise<Project> {
     return this.prisma.project.create({
       data: createProjectDto,
     });
   }
 
-  findAll(): Promise<Project[]> {
-    return this.prisma.project.findMany();
-  }
-
-  findOne(id: string): Promise<Project | null> {
-    return this.prisma.project.findUnique({
-      where: { id },
+  findAll(userId: string): Promise<Project[]> {
+    return this.prisma.project.findMany({
+      where: {
+        userId,
+      },
     });
   }
 
-  update(id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
+  findOne(userId: string, id: string): Promise<Project | null> {
+    return this.prisma.project.findUnique({
+      where: { userId, id },
+    });
+  }
+
+  update(userId: string, id: string, updateProjectDto: UpdateProjectDto): Promise<Project> {
     return this.prisma.project.update({
-      where: { id },
+      where: { userId, id },
       data: updateProjectDto,
     });
   }
 
-  remove(id: string): Promise<Project> {
+  remove(userId: string, id: string): Promise<Project> {
     return this.prisma.project.delete({
-      where: { id },
+      where: { userId, id },
     });
   }
 }
