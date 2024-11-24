@@ -1,12 +1,12 @@
-import { forwardRef, Inject, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
+import { forwardRef, Inject, Injectable, Logger, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { NestFeatureUserService } from '@ph24/nest/feature-user';
-import { IAccessTokenPayload, IPublicUserData, IRefreshTokenResponse, ITokenResponse } from '@ph24/shared/domain';
+import { IAccessTokenPayload, IPublicUserData, IRefreshToken, IAccessToken } from '@ph24/shared/domain';
 import { randomUUID } from 'crypto';
 import { jwtConstants } from './constants';
-import { LoginResponseDto } from '@ph24/nest/data-access-auth';
-import { User } from '@ph24/nest/data-access-user';
+import { LoginResponseDto, RefreshTokenDto } from '@ph24/nest/data-access-auth';
+import { User, UserResponseDto } from '@ph24/nest/data-access-user';
 
 @Injectable()
 export class NestFeatureAuthService {
@@ -18,14 +18,14 @@ export class NestFeatureAuthService {
     private jwtService: JwtService,
   ) { }
 
-  async generateAccessToken(user: IPublicUserData): Promise<ITokenResponse> {
+  async generateAccessToken(user: IPublicUserData): Promise<IAccessToken> {
     const payload: IAccessTokenPayload = { email: user.email, sub: user.id };
     return {
       access_token: await this.jwtService.signAsync(payload),
     }
   }
 
-  async generateRefreshToken(userId: string): Promise<IRefreshTokenResponse> {
+  async generateRefreshToken(userId: string): Promise<IRefreshToken> {
     const tokenId = randomUUID();
     return {
       refresh_token: await this.jwtService.signAsync(
@@ -59,38 +59,55 @@ export class NestFeatureAuthService {
     return null;
   }
 
+  async updateUserRefreshToken(userId: string): Promise<RefreshTokenDto> {
+    const { refresh_token } = await this.generateRefreshToken(userId);
+    await this.userService.updateOne(userId, { refreshToken: refresh_token });
+    return { refresh_token };
+  }
+
   async loginUser(user: User): Promise<LoginResponseDto> {
-    if (!user || !user.refreshToken) {
-      throw new UnauthorizedException();
+    if (!user) {
+      throw new NotFoundException('User not found');
     }
 
     const { access_token } = await this.generateAccessToken(user);
+
+    if (!user.refreshToken) {
+      const { refresh_token } = await this.updateUserRefreshToken(user.id);
+      return { access_token, refresh_token };
+    }
+
     const isTokenValid = await this.checkTokenValidity(user.refreshToken);
 
     if (!isTokenValid) {
-      const { refresh_token } = await this.generateRefreshToken(user.id);
-      await this.userService.updateOne(user.id, { refreshToken: refresh_token });
+      const { refresh_token } = await this.updateUserRefreshToken(user.id);
       return { access_token, refresh_token };
     }
 
     return { access_token, refresh_token: user.refreshToken };
   }
 
-  async identifyUser(email: string): Promise<IPublicUserData | null> {
-    const userData = await this.userService.getOneByEmail(email);
-
-    if (!userData) {
-      return null;
+  async identifyUser(accessToken: string): Promise<IPublicUserData | null> {
+    if (!accessToken) {
+      throw new UnauthorizedException();
     }
 
-    const { password, refreshToken, ...publicUserData } = userData; // eslint-disable-line @typescript-eslint/no-unused-vars
+    const { email } = this.jwtService.verify(accessToken);
+
+    const user = await this.userService.getOneByEmail(email);
+
+    if (!user) {
+      throw new UnauthorizedException();
+    }
+
+    const { password, refreshToken, ...publicUserData } = user; // eslint-disable-line @typescript-eslint/no-unused-vars
 
     return publicUserData;
   }
 
   async refresh(
     refreshToken: string,
-  ): Promise<ITokenResponse> {
+  ): Promise<IAccessToken> {
     const { id } = this.jwtService.verify(refreshToken);
 
     const user = await this.userService.getOneById(id);
@@ -104,24 +121,21 @@ export class NestFeatureAuthService {
     return { access_token };
   }
 
-  // async logout(accessToken: string | undefined): Promise<UserData | undefined> {
-  //   if (!accessToken) {
-  //     throw new UnauthorizedException();
-  //   }
+  async logout(accessToken: string | undefined): Promise<UserResponseDto | undefined> {
+    if (!accessToken) {
+      throw new UnauthorizedException();
+    }
 
-  //   const { id } = this.jwtService.verify(accessToken);
+    const { email } = this.jwtService.verify(accessToken);
 
-  //   const user = await this.userService.getUser({ id });
+    const user = await this.userService.getOneByEmail(email);
 
-  //   if (!user || !user.refreshToken) {
-  //     throw new UnauthorizedException();
-  //   }
+    if (!user || !user.refreshToken) {
+      throw new UnauthorizedException();
+    }
 
-  //   await this.userService.updateUser({
-  //     where: { id: user.id },
-  //     data: { refreshToken: null },
-  //   });
+    await this.userService.updateOne(user.id, { refreshToken: null });
 
-  //   return user;
-  // }
+    return user;
+  }
 }

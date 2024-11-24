@@ -1,10 +1,10 @@
-import { BadRequestException, Body, Controller, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { NestFeatureAuthService } from './nest-feature-auth.service';
-import { LoginRequestDto, LoginResponseDto, RefreshTokenDto, UserIdentifyPayloadDto } from '@ph24/nest/data-access-auth';
+import { FeedbackMessageDto, LoginRequestDto, LoginResponseDto, RefreshTokenDto } from '@ph24/nest/data-access-auth';
 import { UserResponseDto } from '@ph24/nest/data-access-user';
 import { SkipAuth } from '@ph24/nest/util';
-import { IPublicUserData, ITokenResponse } from '@ph24/shared/domain';
+import { IPublicUserData, IAccessToken } from '@ph24/shared/domain';
 
 @ApiTags('auth')
 @ApiBearerAuth()
@@ -29,11 +29,16 @@ export class NestFeatureAuthController {
   @Post('identify')
   @ApiOperation({ summary: 'Identify current user' })
   @ApiOkResponse({ type: UserResponseDto })
-  async identify(@Body() { email }: UserIdentifyPayloadDto): Promise<IPublicUserData> {
-    const user = await this.nestFeatureAuthService.identifyUser(email);
+  async identify(
+    @Req() req: Request & { headers: { authorization: string } },
+  ): Promise<IPublicUserData> {
+    const accessToken = req.headers.authorization?.split(' ')[1];
+
+    const user = await this.nestFeatureAuthService.identifyUser(accessToken);
     if (!user) {
-      throw new BadRequestException('Invalid credentials');
+      throw new BadRequestException('User not found');
     }
+
     return user;
   }
 
@@ -48,33 +53,28 @@ export class NestFeatureAuthController {
     description: 'Unauthorized',
   })
   async refresh(
-    @Body() body: RefreshTokenDto,
-  ): Promise<ITokenResponse> {
+    @Body() { refresh_token }: RefreshTokenDto,
+  ): Promise<IAccessToken> {
     const { access_token } = await this.nestFeatureAuthService.refresh(
-      body.refresh_token,
+      refresh_token,
     );
 
     return { access_token };
   }
 
-  // @Post('logout')
-  // @ApiOperation({ summary: 'Logout' })
-  // @ApiResponse({ status: 401, description: 'Unauthorized' })
-  // @ApiResponse({
-  //   status: HttpStatus.OK,
-  //   description: 'Logout',
-  //   type: FeedbackMessage,
-  // })
-  // async logout(
-  //   @Req() req: Request,
-  //   @Res() res: Response,
-  // ): Promise<Response<FeedbackMessage>> {
-  //   const accessToken = req.headers['authorization']?.split(' ')[1];
+  @Post('logout')
+  @ApiOperation({ summary: 'Logout' })
+  @ApiResponse({ status: 401, description: 'Unauthorized' })
+  @ApiOkResponse({
+    type: FeedbackMessageDto,
+  })
+  async logout(
+    @Req() req: Request & { headers: { authorization: string } },
+  ): Promise<FeedbackMessageDto> {
+    const accessToken = req.headers.authorization?.split(' ')[1];
 
-  //   const user = await this.authService.logout(accessToken);
+    const user = await this.nestFeatureAuthService.logout(accessToken);
 
-  //   return res.send({
-  //     message: `${user?.email} has been logged out successfully`,
-  //   });
-  // }
+    return { message: `${user?.name} logged out successfully` };
+  }
 }

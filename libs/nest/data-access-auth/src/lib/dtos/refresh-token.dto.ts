@@ -1,12 +1,14 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IRefreshTokenResponse } from '@ph24/shared/domain';
-import { IsString } from 'class-validator';
+import { IRefreshToken } from '@ph24/shared/domain';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-export class RefreshTokenDto implements IRefreshTokenResponse {
+export class RefreshTokenDto implements IRefreshToken {
   @ApiProperty({
     type: String,
-    readOnly: true,
+    required: true,
+    example: ''
   })
   @IsString()
+  @IsNotEmpty()
   refresh_token!: string;
 }
