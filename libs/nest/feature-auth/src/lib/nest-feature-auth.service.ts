@@ -6,6 +6,7 @@ import { IAccessTokenPayload, IPublicUserData, IRefreshTokenResponse, ITokenResp
 import { randomUUID } from 'crypto';
 import { jwtConstants } from './constants';
 import { LoginResponseDto } from '@ph24/nest/data-access-auth';
+import { User } from '@ph24/nest/data-access-user';
 
 @Injectable()
 export class NestFeatureAuthService {
@@ -34,7 +35,16 @@ export class NestFeatureAuthService {
     }
   }
 
-  async validateUser(email: string, password: string): Promise<IPublicUserData | null> {
+  async checkTokenValidity(token: string): Promise<boolean> {
+    try {
+      await this.jwtService.verifyAsync(token);
+      return true;
+    } catch (e) {
+      return false
+    }
+  }
+
+  async validateUser(email: string, password: string): Promise<User | null> {
     const user = await this.userService.getOneByEmail(email);
     if (!user) {
       return null;
@@ -42,24 +52,28 @@ export class NestFeatureAuthService {
 
     if (await bcrypt.compare(password, user.password)) {
       this.logger.debug(`User ${email} authenticated successfully`);
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { password, ...publicUserData } = user;
-      // const { refresh_token } = await this.generateRefreshToken(user.id);
-      // await this.userService.updateOne(user.id, { refreshToken: refresh_token });
 
-      return publicUserData;
+      return user;
     }
 
     return null;
   }
 
-  async loginUser(user: IPublicUserData): Promise<LoginResponseDto> {
+  async loginUser(user: User): Promise<LoginResponseDto> {
+    if (!user || !user.refreshToken) {
+      throw new UnauthorizedException();
+    }
+
     const { access_token } = await this.generateAccessToken(user);
-    const { refresh_token } = await this.generateRefreshToken(user.id);
+    const isTokenValid = await this.checkTokenValidity(user.refreshToken);
 
-    await this.userService.updateOne(user.id, { refreshToken: refresh_token });
+    if (!isTokenValid) {
+      const { refresh_token } = await this.generateRefreshToken(user.id);
+      await this.userService.updateOne(user.id, { refreshToken: refresh_token });
+      return { access_token, refresh_token };
+    }
 
-    return { access_token, refresh_token };
+    return { access_token, refresh_token: user.refreshToken };
   }
 
   async identifyUser(email: string): Promise<IPublicUserData | null> {
