@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString } from 'class-validator';
 import { ISkill, SkillState } from '@ph24/shared/domain';
 
-export class CreateSkillDto implements Pick<ISkill, 'content' | 'state' | 'userId'> {
+export class CreateSkillDto implements Pick<ISkill, 'content' | 'state'> {
   @ApiProperty({
     example: 'skill name',
     required: true,
@@ -18,12 +18,4 @@ export class CreateSkillDto implements Pick<ISkill, 'content' | 'state' | 'userI
   @IsString()
   @IsNotEmpty()
   state!: SkillState;
-
-  @ApiProperty({
-    example: '53b542f6-e165-45df-8545-f8e8d47509b8',
-    required: true,
-  })
-  @IsString()
-  @IsNotEmpty()
-  userId!: string;
 }

@@ -39,7 +39,9 @@ export class NestFeatureAuthController {
       throw new BadRequestException('User not found');
     }
 
-    return user;
+    const { password, refreshToken, ...publicUserData } = user; // eslint-disable-line @typescript-eslint/no-unused-vars
+
+    return publicUserData;
   }
 
   @Post('refresh')

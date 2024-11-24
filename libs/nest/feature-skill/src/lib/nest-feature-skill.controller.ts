@@ -1,14 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Skill, CreateSkillDto, UpdateSkillDto } from '@ph24/nest/data-access-skill';
 import { NestFeatureSkillService } from './nest-feature-skill.service';
 import { ReqUserId } from '@ph24/nest/util';
+import { NestFeatureAuthService } from '@ph24/nest/feature-auth';
 
 @ApiBearerAuth()
 @ApiTags('skill')
 @Controller({ version: '1', path: 'skill' })
 export class NestFeatureSkillController {
-  constructor(private skillService: NestFeatureSkillService) { }
+  constructor(private skillService: NestFeatureSkillService, private nestFeatureAuthService: NestFeatureAuthService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create skill' })
@@ -18,8 +19,18 @@ export class NestFeatureSkillController {
     type: Skill,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async create(@Body() data: CreateSkillDto): Promise<Skill> {
-    return await this.skillService.create(data);
+  async create(
+    @Body() data: CreateSkillDto,
+    @Req() req: Request & { headers: { authorization: string } }
+  ): Promise<Skill> {
+    const accessToken = req.headers.authorization?.split(' ')[1];
+
+    const user = await this.nestFeatureAuthService.identifyUser(accessToken);
+    if (!user) {
+      throw new BadRequestException('You have to be logged in to create a skill');
+    }
+
+    return await this.skillService.create(user, data);
   }
 
   @Get()

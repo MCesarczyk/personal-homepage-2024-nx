@@ -1,14 +1,15 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Project, UpdateProjectDto, CreateProjectDto } from '@ph24/nest/data-access-project';
 import { NestFeatureProjectService } from './nest-feature-project.service';
 import { ReqUserId } from '@ph24/nest/util';
+import { NestFeatureAuthService } from '@ph24/nest/feature-auth';
 
 @ApiBearerAuth()
 @ApiTags('project')
 @Controller({ version: '1', path: 'project' })
 export class NestFeatureProjectController {
-  constructor(private projectService: NestFeatureProjectService) { }
+  constructor(private projectService: NestFeatureProjectService, private nestFeatureAuthService: NestFeatureAuthService) { }
 
   @Post()
   @ApiOperation({ summary: 'Create project' })
@@ -18,8 +19,17 @@ export class NestFeatureProjectController {
     type: Project,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
-  async create(@Body() data: CreateProjectDto): Promise<Project> {
-    return await this.projectService.create(data);
+  async create(
+    @Body() data: CreateProjectDto,
+    @Req() req: Request & { headers: { authorization: string } }
+  ): Promise<Project> {
+    const accessToken = req.headers.authorization?.split(' ')[1];
+
+    const user = await this.nestFeatureAuthService.identifyUser(accessToken);
+    if (!user) {
+      throw new BadRequestException('You have to be logged in to create a project');
+    }
+    return await this.projectService.create(user, data);
   }
 
   @Get()

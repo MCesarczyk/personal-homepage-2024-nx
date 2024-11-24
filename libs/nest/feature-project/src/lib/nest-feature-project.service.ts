@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateProjectDto, NestDataAccessProjectService, Project, UpdateProjectDto } from '@ph24/nest/data-access-project';
+import { User } from '@ph24/nest/data-access-user';
 
 @Injectable()
 export class NestFeatureProjectService {
   constructor(private projectRepository: NestDataAccessProjectService) { }
 
-  async create(data: CreateProjectDto): Promise<Project> {
-    return await this.projectRepository.create(data);
+  async create(user: User, data: CreateProjectDto): Promise<Project> {
+    return await this.projectRepository.create({ ...data, userId: user.id });
   }
 
   async getAll(userId: string): Promise<Project[]> {

@@ -8,7 +8,7 @@ import { Project } from './entities/project.entity';
 export class NestDataAccessProjectService {
   constructor(private prisma: NestPrismaClientService) { }
 
-  create(createProjectDto: CreateProjectDto): Promise<Project> {
+  create(createProjectDto: CreateProjectDto & { userId: string }): Promise<Project> {
     return this.prisma.project.create({
       data: createProjectDto,
     });

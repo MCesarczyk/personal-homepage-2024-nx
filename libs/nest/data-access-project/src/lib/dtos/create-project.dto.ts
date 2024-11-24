@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IProject } from '@ph24/shared/domain';
 import { IsNotEmpty, IsString } from 'class-validator';
 
-export class CreateProjectDto implements Omit<IProject, 'id'> {
+export class CreateProjectDto implements Omit<IProject, 'id' | 'userId'> {
   @ApiProperty({
     example: 'My project',
     description: 'The title of the project',
@@ -34,12 +34,4 @@ export class CreateProjectDto implements Omit<IProject, 'id'> {
   @IsString()
   @IsNotEmpty()
   demoUrl!: string;
-
-  @ApiProperty({
-    example: '9abf6400-1ce4-4fc8-a80a-05c0c2c697d7',
-    description: 'The id of the user that created the project',
-  })
-  @IsString()
-  @IsNotEmpty()
-  userId!: string;
 }

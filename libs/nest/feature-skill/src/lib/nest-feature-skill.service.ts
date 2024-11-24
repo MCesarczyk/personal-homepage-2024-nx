@@ -1,12 +1,13 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { NestDataAccessSkillService, Skill, UpdateSkillDto, CreateSkillDto } from '@ph24/nest/data-access-skill';
+import { User } from '@ph24/nest/data-access-user';
 
 @Injectable()
 export class NestFeatureSkillService {
   constructor(private skillRepository: NestDataAccessSkillService) { }
 
-  async create(data: CreateSkillDto): Promise<Skill> {
-    return await this.skillRepository.create(data);
+  async create(user: User, data: CreateSkillDto): Promise<Skill> {
+    return await this.skillRepository.create({ ...data, userId: user.id });
   }
 
   async getAll(userId: string): Promise<Skill[]> {

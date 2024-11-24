@@ -87,7 +87,7 @@ export class NestFeatureAuthService {
     return { access_token, refresh_token: user.refreshToken };
   }
 
-  async identifyUser(accessToken: string): Promise<IPublicUserData | null> {
+  async identifyUser(accessToken: string): Promise<User | null> {
     if (!accessToken) {
       throw new UnauthorizedException();
     }
@@ -100,9 +100,7 @@ export class NestFeatureAuthService {
       throw new UnauthorizedException();
     }
 
-    const { password, refreshToken, ...publicUserData } = user; // eslint-disable-line @typescript-eslint/no-unused-vars
-
-    return publicUserData;
+    return user;
   }
 
   async refresh(

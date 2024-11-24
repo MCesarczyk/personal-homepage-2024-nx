@@ -8,7 +8,7 @@ import { UpdateSkillDto } from './dtos/update-skill.dto';
 export class NestDataAccessSkillService {
   constructor(private prisma: NestPrismaClientService) { }
 
-  create(createSkillDto: CreateSkillDto): Promise<Skill> {
+  create(createSkillDto: CreateSkillDto & { userId: string }): Promise<Skill> {
     return this.prisma.skill.create({
       data: createSkillDto,
     });
