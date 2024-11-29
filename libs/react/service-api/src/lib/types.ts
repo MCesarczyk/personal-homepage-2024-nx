@@ -10,3 +10,8 @@ export interface ApiError {
   status: number;
   message: string;
 }
+
+export type QueryParam = {
+  key: string;
+  value: string;
+}
