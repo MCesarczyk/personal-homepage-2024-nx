@@ -39,6 +39,9 @@
       "@ph24/nest/util": ["libs/nest/util/src/index.ts"],
       "@ph24/prisma-client": ["libs/prisma-client/src/index.ts"],
       "@ph24/prisma-schema": ["libs/prisma-schema/prisma/schema.prisma"],
+      "@ph24/react/feature-auth": ["libs/react/feature-auth/src/index.ts"],
+      "@ph24/react/feature-user": ["libs/react/feature-user/src/index.ts"],
+      "@ph24/react/service-api": ["libs/react/service-api/src/index.ts"],
       "@ph24/shared/domain": ["libs/shared/domain/src/index.ts"],
       "@ph24/shared/util-testing": ["libs/shared/util/testing/src/index.ts"],
       "@ph24/ui": ["libs/ui/src/index.ts"]
