@@ -5,7 +5,6 @@ export const isApiError = (value: any): value is ApiError => {
   return (
     typeof value === "object" &&
     value !== null &&
-    "status" in value &&
-    "message" in value
+    "status" in value
   );
 }

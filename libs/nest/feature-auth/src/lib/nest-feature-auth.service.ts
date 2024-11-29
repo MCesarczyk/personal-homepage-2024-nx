@@ -106,7 +106,15 @@ export class NestFeatureAuthService {
   async refresh(
     refreshToken: string,
   ): Promise<IAccessToken> {
-    const { id } = this.jwtService.verify(refreshToken);
+    if (!refreshToken || refreshToken === 'undefined') {
+      throw new UnauthorizedException();
+    }
+
+    const { id } = await this.jwtService.verify(refreshToken);
+
+    if (!id) {
+      throw new UnauthorizedException();
+    }
 
     const user = await this.userService.getOneById(id);
 

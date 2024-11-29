@@ -44,8 +44,8 @@ export const useAuthApi = () => {
         const response = await sendProtectedRequest(
           ApiMethod.POST,
           routes.auth.refreshTokens,
-          undefined,
-          AuthClientStore.getRefreshToken(),
+          { refresh_token: AuthClientStore.getRefreshToken() },
+          AuthClientStore.getAccessToken(),
         );
 
         AuthClientStore.setAccessToken(response.access_token);
@@ -68,7 +68,7 @@ export const useAuthApi = () => {
     init?: RequestInit,
   ) => {
     try {
-      return await sendProtectedRequest(method, path, body, undefined, init);
+      return await sendProtectedRequest(method, path, body, AuthClientStore.getAccessToken(), init);
     } catch (e) {
       if (isApiError(e) && e?.status === 401) {
         try {
@@ -77,7 +77,7 @@ export const useAuthApi = () => {
           userIsNotAuthenticatedCallback();
           throw e;
         }
-        return await sendProtectedRequest(method, path, body, undefined, init);
+        return await sendProtectedRequest(method, path, body, AuthClientStore.getAccessToken(), init);
       }
 
       throw e;
@@ -87,7 +87,7 @@ export const useAuthApi = () => {
   const me = (userIsNotAuthenticatedCallback: () => void) => {
     return sendAuthGuardedRequest(
       userIsNotAuthenticatedCallback,
-      ApiMethod.GET,
+      ApiMethod.POST,
       routes.auth.me,
     ) as Promise<IPublicUserData>;
   };

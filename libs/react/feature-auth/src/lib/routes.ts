@@ -1,8 +1,8 @@
 export const routes = {
   auth: {
-    me: "/auth/me",
+    me: "/auth/identify",
     login: "/auth/login",
-    refreshTokens: "/auth/refresh-tokens",
+    refreshTokens: "/auth/refresh",
   },
   user: {
     findAll: "/user",
