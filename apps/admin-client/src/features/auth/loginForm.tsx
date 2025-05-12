@@ -2,6 +2,11 @@ import { useNavigate } from 'react-router-dom';
 import { Input, Button } from '@ph24/ui';
 import { authService } from './authService';
 import { ROUTES } from '../../app/routes';
+import { localStorageService } from '../../services/localStorageService';
+import {
+  LOCAL_STORAGE_ACCESS_TOKEN,
+  LOCAL_STORAGE_REFRESH_TOKEN,
+} from '../../features/auth/constants';
 
 interface LoginFormProps {
   setToken: (token: string) => void;
@@ -19,7 +24,14 @@ export const LoginForm = ({ setToken }: LoginFormProps) => {
       username as string,
       password as string
     );
-    setToken(response.accessToken);
+    localStorageService.setItem(
+      LOCAL_STORAGE_ACCESS_TOKEN,
+      response.accessToken
+    );
+    localStorageService.setItem(
+      LOCAL_STORAGE_REFRESH_TOKEN,
+      response.refreshToken
+    );
     navigate(ROUTES.DASHBOARD);
   };
 
