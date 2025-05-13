@@ -1,5 +1,7 @@
+import { localStorageService } from "../../services/localStorageService";
 import { API_PREFIX, API_URL } from "../../app/apiUrl";
 import { AUTH_URLS } from "./authUrls";
+import { LOCAL_STORAGE_REFRESH_TOKEN } from "../../features/auth/constants";
 
 export const authService = {
   login: async (username: string, password: string) => {
@@ -17,6 +19,23 @@ export const authService = {
     const response = await fetch(`${API_URL}${API_PREFIX}${AUTH_URLS.LOGOUT}`, {
       method: 'POST',
     });
+    const data = await response.json();
+    return data;
+  },
+  refresh: async () => {
+    const response = await fetch(`${API_URL}${API_PREFIX}${AUTH_URLS.REFRESH}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        refreshToken: localStorageService.getItem(LOCAL_STORAGE_REFRESH_TOKEN),
+      }),
+    });
+    if (!response.ok) {
+      throw new Error('Failed to refresh token');
+    }
     const data = await response.json();
     return data;
   },
