@@ -20,29 +20,15 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   app.enableCors({
-    origin: [
-      process.env.FRONTEND_URL,
-      process.env.ADMIN_URL,
-      process.env.PUBLIC_URL,
-      'http://localhost:5000',
-    ],
+    origin: 'http://localhost:4200',
     credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Content-Type,Authorization',
   });
 
   app.use(cookieParser());
 
-  const developmentOptions = new DocumentBuilder()
-    .setTitle('Personal Homepage API - development')
-    .setDescription(
-      `Backend for Personal Homepage website. Available on: ${process.env.DEVELOPMENT_URL}. This API is used to manage the content of the homepage.`,
-    )
-    .setVersion('1.0')
-    .addServer(`${process.env.DEVELOPMENT_URL}`, 'Development')
-    .addServer(`${process.env.PRODUCTION_URL}`, 'Production')
-    .addBearerAuth()
-    .build();
-
-  const productionOptions = new DocumentBuilder()
+  const options = new DocumentBuilder()
     .setTitle('Personal Homepage API - production')
     .setDescription(
       `Backend for Personal Homepage website. Available on: ${process.env.PRODUCTION_URL}. This API is used to manage the content of the homepage.`,
@@ -51,9 +37,6 @@ async function bootstrap() {
     .addServer(`${process.env.PRODUCTION_URL}`, 'Production')
     .addBearerAuth()
     .build();
-
-  const options =
-    process.env.NODE_ENV === 'production' ? productionOptions : developmentOptions;
 
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('docs', app, document);

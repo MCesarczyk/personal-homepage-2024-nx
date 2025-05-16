@@ -21,14 +21,14 @@ export class NestFeatureAuthService {
   async generateAccessToken(user: IPublicUserData): Promise<IAccessToken> {
     const payload: IAccessTokenPayload = { email: user.email, sub: user.id };
     return {
-      access_token: await this.jwtService.signAsync(payload),
+      accessToken: await this.jwtService.signAsync(payload),
     }
   }
 
   async generateRefreshToken(userId: string): Promise<IRefreshToken> {
     const tokenId = randomUUID();
     return {
-      refresh_token: await this.jwtService.signAsync(
+      refreshToken: await this.jwtService.signAsync(
         { id: userId, tokenId },
         { expiresIn: jwtConstants.refreshExpiration },
       ),
@@ -60,9 +60,9 @@ export class NestFeatureAuthService {
   }
 
   async updateUserRefreshToken(userId: string): Promise<RefreshTokenDto> {
-    const { refresh_token } = await this.generateRefreshToken(userId);
-    await this.userService.updateOne(userId, { refreshToken: refresh_token });
-    return { refresh_token };
+    const { refreshToken } = await this.generateRefreshToken(userId);
+    await this.userService.updateOne(userId, { refreshToken });
+    return { refreshToken };
   }
 
   async loginUser(user: User): Promise<LoginResponseDto> {
@@ -70,21 +70,21 @@ export class NestFeatureAuthService {
       throw new NotFoundException('User not found');
     }
 
-    const { access_token } = await this.generateAccessToken(user);
+    const { accessToken } = await this.generateAccessToken(user);
 
     if (!user.refreshToken) {
-      const { refresh_token } = await this.updateUserRefreshToken(user.id);
-      return { access_token, refresh_token };
+      const { refreshToken } = await this.updateUserRefreshToken(user.id);
+      return { accessToken, refreshToken };
     }
 
     const isTokenValid = await this.checkTokenValidity(user.refreshToken);
 
     if (!isTokenValid) {
-      const { refresh_token } = await this.updateUserRefreshToken(user.id);
-      return { access_token, refresh_token };
+      const { refreshToken } = await this.updateUserRefreshToken(user.id);
+      return { accessToken, refreshToken };
     }
 
-    return { access_token, refresh_token: user.refreshToken };
+    return { accessToken, refreshToken: user.refreshToken };
   }
 
   async identifyUser(accessToken: string): Promise<User | null> {
@@ -114,9 +114,9 @@ export class NestFeatureAuthService {
       throw new UnauthorizedException();
     }
 
-    const { access_token } = await this.generateAccessToken(user);
+    const { accessToken } = await this.generateAccessToken(user);
 
-    return { access_token };
+    return { accessToken };
   }
 
   async logout(accessToken: string | undefined): Promise<UserResponseDto | undefined> {

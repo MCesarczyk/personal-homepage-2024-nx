@@ -1,5 +1,7 @@
-import { BadRequestException, Body, Controller, Post, Req } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Req, Res } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
+
 import { NestFeatureAuthService } from './nest-feature-auth.service';
 import { FeedbackMessageDto, LoginRequestDto, LoginResponseDto, RefreshTokenDto } from '@ph24/nest/data-access-auth';
 import { UserResponseDto } from '@ph24/nest/data-access-user';
@@ -17,13 +19,23 @@ export class NestFeatureAuthController {
   @ApiOperation({ summary: 'login user' })
   @ApiOperation({ summary: 'Login' })
   @ApiOkResponse({ type: LoginResponseDto })
-  async login(@Body() { email, password }: LoginRequestDto): Promise<LoginResponseDto> {
+  async login(
+    @Res() res: Response,
+    @Body() { email, password }: LoginRequestDto): Promise<Response<LoginResponseDto>> {
     const user = await this.nestFeatureAuthService.validateUser(email, password);
     if (!user) {
       throw new BadRequestException('Invalid credentials');
     }
 
-    return await this.nestFeatureAuthService.loginUser(user);
+    const { accessToken, refreshToken } = await this.nestFeatureAuthService.loginUser(user);
+
+    res.cookie('refreshToken', refreshToken, {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'strict',
+    });
+
+    return res.send({ accessToken, refreshToken });
   }
 
   @Post('identify')
@@ -55,13 +67,13 @@ export class NestFeatureAuthController {
     description: 'Unauthorized',
   })
   async refresh(
-    @Body() { refresh_token }: RefreshTokenDto,
+    @Body() { refreshToken }: RefreshTokenDto,
   ): Promise<IAccessToken> {
-    const { access_token } = await this.nestFeatureAuthService.refresh(
-      refresh_token,
+    const { accessToken } = await this.nestFeatureAuthService.refresh(
+      refreshToken,
     );
 
-    return { access_token };
+    return { accessToken };
   }
 
   @Post('logout')
