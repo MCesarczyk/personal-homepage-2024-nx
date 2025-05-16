@@ -1,5 +1,5 @@
 import { authService } from "../features/auth/authService";
-import { LOCAL_STORAGE_ACCESS_TOKEN } from "../features/auth/constants";
+import { LOCAL_STORAGE_ACCESS_TOKEN, LOCAL_STORAGE_REFRESH_TOKEN } from "../features/auth/constants";
 import { localStorageService } from "./localStorageService";
 
 let isRefreshing = false;
@@ -18,6 +18,13 @@ export const authorizedFetchService = async (url: string, options: RequestInit &
       isRefreshing = true;
       try {
         const data = await authService.refresh();
+
+        if (data.statusCode === 401) {
+          console.log('Failed to refresh token');
+          localStorageService.removeItem(LOCAL_STORAGE_ACCESS_TOKEN);
+          localStorageService.removeItem(LOCAL_STORAGE_REFRESH_TOKEN);
+        }
+
         localStorageService.setItem(LOCAL_STORAGE_ACCESS_TOKEN, data.accessToken);
         isRefreshing = false;
 

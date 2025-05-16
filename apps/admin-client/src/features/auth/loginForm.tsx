@@ -8,11 +8,7 @@ import {
   LOCAL_STORAGE_REFRESH_TOKEN,
 } from '../../features/auth/constants';
 
-interface LoginFormProps {
-  setToken: (token: string) => void;
-}
-
-export const LoginForm = ({ setToken }: LoginFormProps) => {
+export const LoginForm = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

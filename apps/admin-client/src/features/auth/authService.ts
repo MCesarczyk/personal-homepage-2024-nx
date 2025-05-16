@@ -33,9 +33,6 @@ export const authService = {
         refreshToken: localStorageService.getItem(LOCAL_STORAGE_REFRESH_TOKEN),
       }),
     });
-    if (!response.ok) {
-      throw new Error('Failed to refresh token');
-    }
     const data = await response.json();
     return data;
   },
