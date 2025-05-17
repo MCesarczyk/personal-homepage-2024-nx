@@ -1,6 +1,6 @@
 import { BadRequestException, Body, Controller, Delete, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Project, UpdateProjectDto, CreateProjectDto } from '@ph24/nest/data-access-project';
+import { UpdateProjectDto, CreateProjectDto, ProjectDataDto } from '@ph24/nest/data-access-project';
 import { NestFeatureProjectService } from './nest-feature-project.service';
 import { ReqUserId } from '@ph24/nest/util';
 import { NestFeatureAuthService } from '@ph24/nest/feature-auth';
@@ -16,13 +16,13 @@ export class NestFeatureProjectController {
   @ApiResponse({
     status: 201,
     description: 'The record has been successfully created.',
-    type: Project,
+    type: ProjectDataDto,
   })
   @ApiResponse({ status: 401, description: 'Unauthorized.' })
   async create(
     @Body() data: CreateProjectDto,
     @Req() req: Request & { headers: { authorization: string } }
-  ): Promise<Project> {
+  ): Promise<ProjectDataDto> {
     const accessToken = req.headers.authorization?.split(' ')[1];
 
     const user = await this.nestFeatureAuthService.identifyUser(accessToken);
