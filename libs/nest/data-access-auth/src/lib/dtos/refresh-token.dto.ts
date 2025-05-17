@@ -10,5 +10,5 @@ export class RefreshTokenDto implements IRefreshToken {
   })
   @IsString()
   @IsNotEmpty()
-  refresh_token!: string;
+  refreshToken!: string;
 }

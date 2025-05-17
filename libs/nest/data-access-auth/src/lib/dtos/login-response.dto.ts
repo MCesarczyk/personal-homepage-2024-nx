@@ -8,6 +8,6 @@ export class LoginResponseDto implements IAccessToken, IRefreshToken {
     readOnly: true,
   })
   @IsString()
-  access_token!: IAccessToken["access_token"];
-  refresh_token!: IRefreshToken["refresh_token"];
+  accessToken!: IAccessToken["accessToken"];
+  refreshToken!: IRefreshToken["refreshToken"];
 }

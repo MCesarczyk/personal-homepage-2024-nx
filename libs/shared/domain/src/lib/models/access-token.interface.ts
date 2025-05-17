@@ -1,3 +1,3 @@
 export interface IAccessToken {
-  access_token: string;
+  accessToken: string;
 }

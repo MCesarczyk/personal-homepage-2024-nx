@@ -48,3 +48,5 @@ Thumbs.db
 
 # Next.js
 .next
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
