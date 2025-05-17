@@ -20,7 +20,7 @@ async function bootstrap() {
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
 
   app.enableCors({
-    origin: 'http://localhost:4200',
+    origin: process.env.FRONTEND_URL || 'http://localhost:4200',
     credentials: true,
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     allowedHeaders: 'Content-Type,Authorization',
@@ -34,7 +34,7 @@ async function bootstrap() {
       `Backend for Personal Homepage website. Available on: ${process.env.PRODUCTION_URL}. This API is used to manage the content of the homepage.`,
     )
     .setVersion('1.0')
-    .addServer(`${process.env.PRODUCTION_URL}`, 'Production')
+    .addServer(`${process.env.PRODUCTION_URL}`, 'Default')
     .addBearerAuth()
     .build();
 
