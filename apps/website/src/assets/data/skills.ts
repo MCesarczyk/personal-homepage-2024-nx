@@ -1,18 +1,14 @@
-export const skills = [
+export const technologies = [
   "JS/ES6+",
   "React 18",
   "TypeScript",
   "Next.js 14",
   "Styled components",
   "Tailwind CSS",
-  "Ant Design UI library",
-  "Material UI library",
-  "React-Redux",
-  "Redux-Saga",
+  "Redux",
   "React Router",
   "Zustand",
-  "Tanstack/React Query",
-  "Tanstack Router",
+  "Tanstack Query",
   "Jest/RTL",
   "MSW",
   "Cypress",
@@ -21,13 +17,22 @@ export const skills = [
   "Express.js",
   "Nest.js",
   "Prisma",
-  "SQL basics",
+  "PostgresSQL",
   "GraphQL",
   "NX monorepo",
   "Docker",
   "Git/gh-pages",
 ];
 
-export const learning = ["Angular", "PWA"];
+export const skills = [
+  "Frontend development",
+  "Backend development",
+  "Responsive design",
+  "Testing",
+  "Deployment",
+  "Geospatial data",
+];
 
-export const goals = ["Remix", "Svelte", "Rust", "React Native"];
+export const learning = ["Angular", "Python/Django", "Docker Swarm", "Kubernetes", "CI/CD"];
+
+export const goals = ["DDD", "Microservices", "Cloud computing"];

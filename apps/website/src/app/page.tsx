@@ -5,10 +5,11 @@ import {
   ADDRESS,
   AUTHOR_DESCRIPTION,
   AUTHOR_NAME,
-  skills,
   learning,
   goals,
   portrait,
+  technologies,
+  skills,
 } from '../assets';
 import { sampleRepositories } from './repositories';
 import { footerThumbnails } from '../components/footer/footerThumbnails';
@@ -24,6 +25,7 @@ export default async function Index() {
         description={AUTHOR_DESCRIPTION}
         Portrait={<Image src={portrait} priority alt="portrait" height={384} />}
       />
+      <Section title={'Technologies'} elements={technologies} />
       <Section title={'My skills'} elements={skills} />
       <Section title={"Things I'm learning right now"} elements={learning} />
       <Section title={'My next goals'} elements={goals} />
